@@ -201,4 +201,4 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`Started playing: **${song.title}**`);
 }
 
-client.login(token);
+client.login(token).then().catch(`Error logging in: ${console.error}`);
