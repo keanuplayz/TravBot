@@ -1,0 +1,11 @@
+{
+  "name": "travbot",
+  "version": "1.0.0",
+  "description": "TravBot Discord bot.",
+  "main": "index.js",
+  "author": "Keanu",
+  "dependencies": {
+    "discord.js": "11.5.1",
+    "ytdl-core": "1.0.0"
+  }
+}
