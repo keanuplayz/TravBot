@@ -33,6 +33,7 @@ fs.readdir("./commands/", (err, files) => {
 
 client.once('ready', () => {
 	console.log('Ready!');
+	client.user.setGame('.help')
 });
 
 client.once('reconnecting', () => {

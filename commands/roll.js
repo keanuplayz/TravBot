@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require("../config.json");
 
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async (client, message, args) => {
     if (message.author.bot) return;
 	let prefix = "."
     if (!message.content.startsWith(prefix)) return;
@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
         }
         else 
         {
-            message.reply('stop rolling me please');
+            message.reply('stop rolling me pls');
         }
     }
 
@@ -24,5 +24,9 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.config = {
     name: "roll",
-    aliases: []
+    noalias: "No aliases",
+    aliases: [],
+    usage: ".help",
+    description: "Rolls random number for generating a response. (Test Command)",
+    accessibleby: "Members"
 }

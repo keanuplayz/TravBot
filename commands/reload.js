@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const config = require("../config.json");
 
-module.exports.run = async (bot, message, args) => {
+
+module.exports.run = async (client, message, args) => {
     
     if(message.author.id != "465662909645848577") return message.channel.send("You are not the bot owner.")
 
@@ -13,12 +14,13 @@ module.exports.run = async (bot, message, args) => {
         delete require.cache[require.resolve(`./${commandName}.js`)] //usage !reload <name>
         client.commands.delete(commandName)
         const pull = require(`./${commandName}.js`)
-        bot.commands.set(commandName, pull)
+        client.commands.set(commandName, pull)
     } catch(e) {
+        console.log(e.stack);
         return message.channel.send(`Could not reload \`${args[0].toUpperCase()}\``);
     }
 
-message.channel.send(`The command \`${args[0].toUpperCase()} has been reloaded.`)
+    message.channel.send(`The command \`${args[0].toUpperCase()}\` has been reloaded.`)
 
 
 }
@@ -26,6 +28,8 @@ message.channel.send(`The command \`${args[0].toUpperCase()} has been reloaded.`
 
 module.exports.config = {
     name: "reload",
-    description: "Reloads a bot command.",
-    aliases: []
+    aliases: ["rl"],
+    usage: ".reload",
+    description: "Reloads given command.",
+    accessibleby: "Bot Owner"
 }
