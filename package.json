@@ -9,7 +9,9 @@
     "discord.js-commando": "^0.10.0",
     "moment": "2.24.0",
     "node-opus": "^0.3.3",
+    "reaction-core": "^2.3.0",
     "yt-search": "^0.4.1",
-    "ytdl-core": "1.0.0"
+    "ytdl-core": "1.0.0",
+    "eslint": "^6.6.0"
   }
 }
