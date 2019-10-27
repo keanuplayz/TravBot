@@ -13,5 +13,8 @@
     "yt-search": "^0.4.1",
     "ytdl-core": "1.0.0",
     "eslint": "^6.6.0"
+  },
+	"devDependencies": {
+		"discord.js-docgen": "discordjs/docgen",
   }
 }
