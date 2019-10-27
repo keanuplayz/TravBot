@@ -15,6 +15,6 @@
     "eslint": "^6.6.0"
   },
 	"devDependencies": {
-		"discord.js-docgen": "discordjs/docgen",
+		"discord.js-docgen": "discordjs/docgen"
   }
 }
