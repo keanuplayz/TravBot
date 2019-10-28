@@ -1,5 +1,5 @@
 {
-  "name": "travbot",
+  "name": "travebot",
   "version": "1.0.0",
   "description": "TravBot Discord bot.",
   "main": "index.js",
@@ -12,9 +12,25 @@
     "reaction-core": "^2.3.0",
     "yt-search": "^0.4.1",
     "ytdl-core": "1.0.0",
-    "eslint": "^6.6.0"
+    "eslint": "^6.6.0",
+    "google": "^2.1.0"
   },
-	"devDependencies": {
-		"discord.js-docgen": "discordjs/docgen"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keanuplayz/TravBot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "discord.js"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keanuplayz/TravBot/issues"
+  },
+  "homepage": "https://github.com/keanuplayz/TravBot#readme"
 }
