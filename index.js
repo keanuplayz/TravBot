@@ -7,6 +7,10 @@ const {
 const ytdl = require('ytdl-core');
 const RC = require('reaction-core')
 const path = require('path');
+var CronJob = require('cron').CronJob;
+new CronJob('* * * * * *', function() {
+  console.log('You will see this message every second');
+});
 
 const client = new Discord.Client();
 

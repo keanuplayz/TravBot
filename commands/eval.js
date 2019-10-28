@@ -3,7 +3,6 @@ const config = require("../config.json");
 
 
 module.exports.run = async (client, message, args) => {
-
     try {
         const value = eval(args.join(" "));
         let stuff;

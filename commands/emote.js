@@ -10,6 +10,7 @@ module.exports.run = async (client, message, args) => {
         const emote = client.emojis.find(emote => emote.name === args[0]);
         
         if(emote) {
+            message.delete();
             message.channel.send(`${emote}`);
         } else {
             message.channel.send("That's not a valid emote name!")

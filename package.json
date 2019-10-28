@@ -1,19 +1,20 @@
 {
   "name": "travebot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TravBot Discord bot.",
   "main": "index.js",
   "author": "Keanu",
   "dependencies": {
+    "cron": "^1.7.2",
     "discord.js": "11.5.1",
     "discord.js-commando": "^0.10.0",
+    "eslint": "^6.6.0",
+    "google": "^2.1.0",
     "moment": "2.24.0",
     "node-opus": "^0.3.3",
     "reaction-core": "^2.3.0",
     "yt-search": "^0.4.1",
-    "ytdl-core": "1.0.0",
-    "eslint": "^6.6.0",
-    "google": "^2.1.0"
+    "ytdl-core": "1.0.0"
   },
   "devDependencies": {},
   "scripts": {
