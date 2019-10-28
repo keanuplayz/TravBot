@@ -1,11 +1,18 @@
 const Discord = require('discord.js');
+const Commando = require('discord.js-commando');
 const {
 	prefix,
 	token,
 } = require('./config.json');
 const ytdl = require('ytdl-core');
+const RC = require('reaction-core')
+const path = require('path');
 
 const client = new Discord.Client();
+
+const command = new Commando.Client({
+    owner: '465662909645848577'
+});
 
 const queue = new Map();
 
@@ -14,6 +21,19 @@ const fs = require("fs")
 const search = require("yt-search")
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
+
+const handler = new RC.Handler()
+
+command.registry
+    // Registers your custom command groups
+    .registerGroups([
+        ['fun', 'Fun commands'],
+        ['some', 'Some group'],
+        ['other', 'Some other group']
+    ])
+
+    // Registers all built-in groups, commands, and argument types
+    .registerDefaults();
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -33,10 +53,20 @@ fs.readdir("./commands/", (err, files) => {
 	});
 });
 
+client.on('messageReactionAdd', (messageReaction, user) => handler.handle(messageReaction, user))
+const example = require('./exButtons.js')
+
+let changeColour = new RC.Menu(example.embed, example.buttons)
+handler.addMenus(changeColour)
+
+client.on('message', async message => {
+	if (message.author.bot) return
+})
+
 client.once('ready', () => {
 	console.log(`Ready! Currently in ${client.guilds.size} guilds.`);
 	client.user.setStatus('dnd')
-	client.user.setActivity('.help')
+	client.user.setActivity('.help', { type: 'LISTENING' });
 });
 
 client.once('reconnecting', () => {
@@ -64,7 +94,9 @@ client.on('message', async message => {
 	let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)))
 	if (commandfile) commandfile.run(client, message, args)
 
-
+	if (message.content === `${prefix}rctest`) {
+		message.channel.sendMenu(changeColour)
+	}
 
 	if (message.content.startsWith(`${prefix}play`)) {
 		execute(message, serverQueue);

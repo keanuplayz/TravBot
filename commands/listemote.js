@@ -1,13 +1,8 @@
 const Discord = require('discord.js');
 const botconfig = require("../config.json");
 
-const exampleEmbed = {
-    title: 'Emote List',
-    
-};
-
 module.exports.run = async (client, message, args) => {
-    const emojiList = message.guild.emojis.map((e, x) => (e) + ' | ' + e.name).join('\n');
+    const emojiList = message.guild.emojis.map((e, x) => (e) + ' | ' + e.name).join('\n').substring(0,2000);
     message.channel.send(emojiList);
     return;
 }

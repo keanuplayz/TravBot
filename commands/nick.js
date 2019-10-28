@@ -8,7 +8,8 @@ module.exports.run = async (client, message, args) => {
         const nickName = args.join(" ");
         const lea = message.guild.members.find('id', client.user.id);
         await lea.setNickname(nickName);
-        message.channel.send(`Nickname set to \`${nickName}\``)
+        message.delete(5000);
+        message.channel.send(`Nickname set to \`${nickName}\``).then(m => m.delete(5000));
     } catch (e) {
         console.log(e)
     }

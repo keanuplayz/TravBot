@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
     const travMessages = msgs.filter(m => m.author.id === client.user.id);
     console.log(`Found ${travMessages.size} messages to delete.`);
     if(!args.includes("--silent")) {
-        await message.channel.send(`Found ${travMessages.size} messages to delete.`);
+        await message.channel.send(`Found ${travMessages.size} messages to delete.`).then(m => m.delete(5000));
     }
 
     try {
