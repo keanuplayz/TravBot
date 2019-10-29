@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const config = require("../config.json");
 const colours = require("../colours.json");
 
 module.exports.run = async (bot, message, args) => {
@@ -13,10 +12,7 @@ module.exports.run = async (bot, message, args) => {
         .addField("**Member Count:**", `${message.guild.memberCount}`, true)
         .addField("**Role Count:**", `${message.guild.roles.size}`, true)
         .setFooter(`Travbot Services`, bot.user.displayAvatarURL);
-    message.channel.send({
-        embed: sEmbed
-    });
-
+    message.channel.send({sEmbed})
 }
 
 module.exports.config = {

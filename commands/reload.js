@@ -1,13 +1,9 @@
-const Discord = require('discord.js');
-const config = require("../config.json");
 
+const {ownerID} = require("../config.json");
 
 module.exports.run = async (client, message, args) => {
-    
-    if(message.author.id != "465662909645848577") return message.channel.send("You are not the bot owner.")
-
+    if(message.author.id != ownerID) return message.channel.send("You are not the bot owner.")
     if(!args[0]) return message.channel.send("Please provide a command to reload.").then(m => m.delete(5000));
-
     let commandName = args[0].toLowerCase()
 
     try {
@@ -21,15 +17,12 @@ module.exports.run = async (client, message, args) => {
     }
 
     message.channel.send(`The command \`${args[0].toUpperCase()}\` has been reloaded.`).then(m => m.delete(5000));
-
-
 }
-
 
 module.exports.config = {
     name: "reload",
     aliases: ["rl"],
-    usage: ".reload",
+    usage: ".reload <command name>",
     description: "Reloads given command.",
     accessibleby: "Bot Owner"
 }
