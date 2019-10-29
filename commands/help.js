@@ -33,7 +33,8 @@ module.exports.run = async (client, message, args) => {
         .setThumbnail(client.user.displayAvatarURL)
         .setTimestamp()
         .setDescription(`These are the available commands for TravBot.\nThe bot prefix is: ${prefix}`)
-        .addField(`Commands:`, "``help``\n``emote``\n``serverinfo``\n``roll``\n``ok``\n``play``\n``pause``\n``resume``\n``stop``\n``nowplaying``\n``queue``\n``nick``\n``say``\n``suicide``\n``ravi 1 UTAI 9``\n``whoami``\n``whostupid``\n``water``")
+        .addField(`**You can get additional command info with:**`, "`.help <command>`")
+        .addField(`Commands:`, "``help``\n``emote``\n``react``\n``serverinfo``\n```eval``\n``roll``\n``ok``\n``play``\n``pause``\n``resume``\n``stop``\n``nowplaying``\n``queue``\n``nick``\n``say``\n``ravi 1 to 9``\n``water``\n``code``")
         .setFooter("Travbot Services", client.user.displayAvatarURL)
         message.channel.send(embed).then(m => m.delete(10000));
         message.author.send(Sembed)

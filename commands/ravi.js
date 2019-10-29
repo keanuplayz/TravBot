@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require("../config.json");
 const prefix = config.prefix
 
-const file = new Discord.Attachment('assets/ravi1.png');
+const file1 = new Discord.Attachment('assets/ravi1.png');
 const exampleEmbed = {
 	title: 'Ravioli ravioli...',
 	image: {
