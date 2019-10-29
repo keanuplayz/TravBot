@@ -17,7 +17,7 @@ module.exports.run = (client, message, args) => {
     "george bush",
     "obama",
     "the world",
-    " copy of scott pilgrim vs the world",
+    "copy of scott pilgrim vs the world",
     "ok",
     "ko",
     "Hot Daddy Venomous",
