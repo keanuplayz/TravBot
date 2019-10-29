@@ -3,14 +3,15 @@ const config = require("../config.json");
 const prefix = config.prefix
 
 module.exports.run = async (client, message, args) => {
-  if (!args[0]) return message.channel.send("Minzy and Keanu are.");
+    const guildList = client.guilds.array().map(e => e.name);
+    message.channel.send(guildList);
 }
 
 module.exports.config = {
-    name: "whostupid",
-    noaliases: "No aliases",
+    name: "guilds",
+    noalias: "No aliases",
     aliases: [],
-    usage: ".whostupid",
-    description: "Tells you who is stupid.",
+    usage: ".guilds",
+    description: "Lists all guilds.",
     accessibleby: "Members"
 }
