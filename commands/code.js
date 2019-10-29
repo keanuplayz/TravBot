@@ -1,9 +1,5 @@
-const Discord = require('discord.js');
-const config = require("../config.json");
-const prefix = config.prefix
-
-module.exports.run = async (client, message, args) => {
-  if (!args[0]) return message.channel.send("https://github.com/keanuplayz/TravBot");
+module.exports.run =  (client, message, args) => {
+  message.channel.send("https://github.com/keanuplayz/TravBot");
 }
 
 module.exports.config = {

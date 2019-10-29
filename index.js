@@ -40,9 +40,7 @@ command.registry
     .registerDefaults();
 
 fs.readdir("./commands/", (err, files) => {
-
 	if (err) console.log(err)
-
 	let jsfile = files.filter(f => f.split(".").pop() === "js")
 	if (jsfile.length <= 0) {
 		return console.log("[LOGS] Couldn't find commands!");

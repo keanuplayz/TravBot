@@ -1,9 +1,8 @@
-const Discord = require('discord.js');
-const config = require("../config.json");
-const prefix = config.prefix
+const {ownerID} = require("../config.json");
+
 
 module.exports.run = async (client, message, args) => {
-    if (message.author.id != "465662909645848577") return message.channel.send("You are not the bot owner!")
+    if (message.author.id != ownerID) return message.channel.send("You are not the bot owner!")
     try{
         const nickName = args.join(" ");
         const lea = message.guild.members.find('id', client.user.id);

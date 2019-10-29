@@ -3,9 +3,7 @@ const config = require("../config.json");
 const colours = require("../colours.json");
 const prefix = config.prefix
 
-
 module.exports.run = async (client, message, args) => {
-    
     if(args[0] == "help") return message.channel.send(`Just do \`${prefix}help\` instead.`)
 
     if(args[0]) {

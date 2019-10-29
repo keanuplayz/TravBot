@@ -1,7 +1,3 @@
-const Discord = require('discord.js');
-const config = require("../config.json");
-const prefix = config.prefix
-
 module.exports.run = async (client, message, args) => {
     let sender = message.author
     let mention = message.mentions.users.first()
@@ -9,8 +5,6 @@ module.exports.run = async (client, message, args) => {
     if(!mention) return message.channel.send(":cookie: Here's a cookie!")
     if(mention.id == sender.id) return message.channel.send("You can't give yourself cookies!")
     message.channel.send(`:cookie: <@${sender.id}> gave <@${mention.id}> a cookie!`)
-    
-
 }
 
 module.exports.config = {
