@@ -21,4 +21,7 @@ The prefix for the bot is: `.`
 1. Download or clone the repo.
 2. Open the directory.
 3. Run `npm install` (if it refuses to install, please submit an issue.)
-4. Run `node start`
+4. Run `node start`Bot
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbOTA1OTk1MDU2XX0=
+-->
