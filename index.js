@@ -7,12 +7,9 @@ const {
 const ytdl = require('ytdl-core');
 const RC = require('reaction-core')
 const path = require('path');
-var CronJob = require('cron').CronJob;
-new CronJob('* * * * * *', function() {
-  console.log('You will see this message every second');
-});
 
-const client = new Discord.Client();
+
+const client = new Discord.Client({disableEveryone: true});
 
 const command = new Commando.Client({
     owner: '465662909645848577'
@@ -40,7 +37,9 @@ command.registry
     .registerDefaults();
 
 fs.readdir("./commands/", (err, files) => {
+
 	if (err) console.log(err)
+
 	let jsfile = files.filter(f => f.split(".").pop() === "js")
 	if (jsfile.length <= 0) {
 		return console.log("[LOGS] Couldn't find commands!");
@@ -65,6 +64,10 @@ client.on('message', async message => {
 	if (message.author.bot) return
 })
 
+client.on('guildCreate', guild=>{
+client.channels.get("631163133997744129").send(`TravBot joined: ${guild.name}`)
+})
+
 client.once('ready', () => {
 	console.log(`Ready! Currently in ${client.guilds.size} guilds.`);
 	client.user.setStatus('dnd')
@@ -78,7 +81,6 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
 	console.log('Disconnect!');
 });
-
 
 
 client.on('message', async message => {
@@ -95,6 +97,10 @@ client.on('message', async message => {
 	if (!message.content.startsWith(prefix)) return;
 	let commandfile = client.commands.get(cmd.slice(prefix.length)) || client.commands.get(client.aliases.get(cmd.slice(prefix.length)))
 	if (commandfile) commandfile.run(client, message, args)
+
+	if (message.content === `:ohno:`) {
+		message.react(":ohno:");
+	}
 
 	if (message.content === `${prefix}rctest`) {
 		message.channel.sendMenu(changeColour)

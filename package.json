@@ -10,6 +10,7 @@
     "discord.js-commando": "^0.10.0",
     "eslint": "^6.6.0",
     "google": "^2.1.0",
+    "jszip": "^3.2.2",
     "moment": "2.24.0",
     "node-opus": "^0.3.3",
     "reaction-core": "^2.3.0",

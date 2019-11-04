@@ -1,4 +1,5 @@
 module.exports.run = async (client, message, args) => {
+if (message.author.id != ownerID) return message.channel.send("You are not the bot owner!")
     const guildList = client.guilds.array().map(e => e.name);
     message.channel.send(guildList);
 }
