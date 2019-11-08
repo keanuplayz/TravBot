@@ -1,6 +1,6 @@
-
 # Travbot
 Travbot is a Discord bot that has a small amount of uses. It was created as a joke, but ended up actually being worked on.
+
 ## Commands
 The prefix for the bot is: `.`
 
