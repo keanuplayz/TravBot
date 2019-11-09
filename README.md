@@ -1,4 +1,4 @@
-# Travbot
+# Travbot [![Build Status](https://travis-ci.org/keanuplayz/TravBot.svg?branch=master)](https://travis-ci.org/keanuplayz/TravBot)
 Travbot is a Discord bot that has a small amount of uses. It was created as a joke, but ended up actually being worked on.
 
 ## Commands
