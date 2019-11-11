@@ -1,5 +1,4 @@
-# Travbot [![Build Status](https://travis-ci.org/keanuplayz/TravBot.svg?branch=master)](https://travis-ci.org/keanuplayz/TravBot)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot?ref=badge_shield)
+# Travbot [![Build Status](https://travis-ci.org/keanuplayz/TravBot.svg?branch=master)](https://travis-ci.org/keanuplayz/TravBot) [![Dependencies](https://david-dm.org/keanuplayz/travbot.svg)](https://david-dm.org/keanuplayz/travbot) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot?ref=badge_shield)
 Travbot is a Discord bot that has a small amount of uses. It was created as a joke, but ended up actually being worked on.
 
 ## Commands
