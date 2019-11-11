@@ -38,3 +38,7 @@ The prefix for the bot is: `.`
 2. Open the directory.
 3. Run `npm install` (if it refuses to install, please submit an issue.)
 4. Run `node start`
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot?ref=badge_large)
