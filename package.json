@@ -33,5 +33,6 @@
   "bugs": {
     "url": "https://github.com/keanuplayz/TravBot/issues"
   },
-  "homepage": "https://github.com/keanuplayz/TravBot#readme"
+  "homepage": "https://github.com/keanuplayz/TravBot#readme",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
 }
