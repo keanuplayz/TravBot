@@ -1,0 +1,11 @@
+addReviewers: true
+
+addAssignees: true
+
+reviewers: 
+  - keanuplayz
+  
+skipKeywords:
+  - wip
+
+numberOfReviewers: 0
