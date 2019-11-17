@@ -9,7 +9,6 @@ const RC = require('reaction-core');
 const path = require('path');
 
 const cron = require('node-cron');
-let shell = require('shelljs');
 
 cron.schedule("0 0 * * *", function(){
 	const Discord = require('discord.js');
