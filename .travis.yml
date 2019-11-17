@@ -4,3 +4,7 @@ node_js:
 cache:
   directories:
     - "node_modules"
+os:
+  - windows
+  - linux
+  - osx
