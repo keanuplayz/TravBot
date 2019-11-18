@@ -8,6 +8,14 @@ const ytdl = require('ytdl-core');
 const RC = require('reaction-core');
 const path = require('path');
 
+const cron = require('node-cron');
+
+cron.schedule("0 0 * * *", function(){
+	const Discord = require('discord.js');
+	console.log("h has officially been declared greater then H");
+	client.channels.get("638454695748304907").send("`daily reminder that h > H` :blue_heart:");
+	client.channels.get("638454695748304907").send("@Keanu#2811 it worked, good job mate");
+});
 
 const client = new Discord.Client({
 	disableEveryone: true
