@@ -1,0 +1,34 @@
+name: Twilio SMS
+on:
+  push:
+  pull_request:
+    types: [assigned, opened, closed, reopened]
+  delete:
+  create:
+  fork:
+  issue_comment:
+      types: [created, deleted]
+  issues:
+    types: [opened, edited, milestoned]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Twilio SMS
+      uses: twilio-labs/actions-sms@v1
+      with:
+        # Phone number in your Twilio account to send the SMS from
+        fromPhoneNumber: +12052930975
+        # Phone number to send the SMS to
+        toPhoneNumber: +310621654958
+        # The message you want to send
+        message: The ${{ github.event_name }} ${{ github.event.action }} event has been triggered on TravBot.
+        # A Twilio Account SID. Can alternatively be stored in environment
+        TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+        # A Twilio API Key. Can alternatively be stored in environment
+        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+        # A Twilio API Secret. Can alternatively be stored in environment
+        TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
