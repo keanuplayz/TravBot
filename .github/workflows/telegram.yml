@@ -1,4 +1,4 @@
-name: telegram message
+name: Telegram Message
 on: [push]
 jobs:
 
@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: send custom message with args
+    - name: Send a message to Telegram.
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: The ${{ github.event_name }} event triggered first step.
+        args: The ${{ github.event_name }} event has been triggered on TravBot.
