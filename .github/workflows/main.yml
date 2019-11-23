@@ -1,0 +1,14 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+ build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Eslint Annotate
+      uses: a-b-r-o-w-n/eslint-action@preview
+      with:
+        repo-token: ${{ secrets.ESLINT_TOKEN }}
