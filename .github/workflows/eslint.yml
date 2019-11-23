@@ -10,4 +10,5 @@ jobs:
     steps:
     - name: ESLint checks
       uses: gimenete/eslint-action@1.0
-
+      with:
+        repo-token: ${{ secrets.ESLINT_TOKEN }}
