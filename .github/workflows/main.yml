@@ -1,4 +1,4 @@
-name: CI
+name: ESLint
 
 on: [pull_request]
 
@@ -8,7 +8,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Eslint Annotate
-      uses: a-b-r-o-w-n/eslint-action@preview
-      with:
-        repo-token: ${{ secrets.ESLINT_TOKEN }}
+    - name: ESLint checks
+      uses: gimenete/eslint-action@1.0
