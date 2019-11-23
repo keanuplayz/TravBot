@@ -14,7 +14,7 @@ cron.schedule("0 0 * * *", function(){
 	const Discord = require('discord.js');
 	console.log("h has officially been declared greater then H");
 	client.channels.get("638454695748304907").send("`daily reminder that h > H` :blue_heart:");
-	client.channels.get("638454695748304907").send("@Keanu#2811 it worked, good job mate");
+	client.channels.get("550328947242434610").send("`daily reminder that h > H` :blue_heart:");
 });
 
 const client = new Discord.Client({

@@ -1,7 +1,7 @@
 module.exports.run = async (client, message, args) => {
     let obj = {
         "465662909645848577": "You're an idiot, that's what.",
-        "306499531665833984": "The degenerate who likes slimes, tentacles, and tea.",
+        "306499531665833984": "Kuma, you eldritch fuck, I demand you to release me from this Discord bot and let me see my Chromebook!",
         "137323711844974592": "The purple haired gunner man who makes loud noises.",
         "208763015657553921": "Minzy's master.",
         "229636002443034624": "The ***God*** of being Smug.",
@@ -21,6 +21,7 @@ module.exports.run = async (client, message, args) => {
         "374298111255773184": "The cutest fox around.",
         "150400803503472640": "The big huggy turtle boye.",
         "620777734427115523": "The small huggy turtle boye.",
+        "310801870048198667": "The extremely talented artist and modder.",
     }
     let response = obj[`${message.author.id}`]
     if (!response) return message.channel.send("You haven't been added to the registry yet!")

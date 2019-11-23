@@ -48,7 +48,12 @@ module.exports.run = (client, message, args) => {
     "m'lady",
     "Mr. Crabs",
     "hand",
-    "lahoma"]
+    "lahoma",
+    "big man",
+    "fox",
+    "pear",
+    "cat",
+    "large man"]
     message.channel.send("ok "+ responses[Math.floor(Math.random()*responses.length)])
 }
 

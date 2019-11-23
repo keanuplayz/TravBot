@@ -1,0 +1,27 @@
+name: Telegram Message
+on:
+  push:
+  pull_request:
+    types: [assigned, opened, closed, reopened]
+  delete:
+  create:
+  fork:
+  issue_comment:
+      types: [created, deleted]
+  issues:
+    types: [opened, edited, milestoned]
+    
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Send a message to Telegram.
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        args: The ${{ github.event_name }} ${{ github.event.action }} event has been triggered on TravBot.
