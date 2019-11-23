@@ -1,5 +1,17 @@
 name: Telegram Message
-on: [push]
+on:
+  push:
+  pull_request:
+    types: [assigned, opened, closed, reopened]
+  delete:
+  create:
+  fork:
+  issue_comment:
+      types: [created, deleted]
+  issues:
+    types: [opened, edited, milestoned]
+    
+
 jobs:
 
   build:
