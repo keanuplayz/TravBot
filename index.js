@@ -215,7 +215,12 @@ async function execute(message, serverQueue) {
 	const song = {
 		title: songInfo.title,
 		url: songInfo.video_url,
+		length: songInfo.length_seconds,
 	};
+
+	if (song.length >= 5*60) {
+		return message.channel.send("This song is too long!")
+	}
 
 	if (!serverQueue) {
 		const queueContruct = {
