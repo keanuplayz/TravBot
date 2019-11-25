@@ -8,6 +8,7 @@
     "discord.js": "11.5.1",
     "discord.js-commando": "^0.10.0",
     "eslint": "^6.6.0",
+    "moment": "^2.24.0",
     "node-cron": "^2.0.3",
     "node-opus": "^0.3.3",
     "reaction-core": "^2.3.0",
