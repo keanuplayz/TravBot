@@ -17,11 +17,11 @@ module.exports.run = async (client, message, args) => {
         .setFooter(`ID: ${user.id}`)
         .setTimestamp();
 
-    message.channel.send({ embed: embed });
-    return;
-    
     if (e) {
-       return message.channel.send(e)
+        message.react('❌')
+    } else{
+        message.channel.send({ embed: embed });
+        return; 
     }
 }
 
