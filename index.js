@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const Commando = require('discord.js-commando');
+const moment = require('moment');
 const {
 	prefix,
 	token,
@@ -34,17 +35,6 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
 const handler = new RC.Handler();
-
-command.registry
-	// Registers your custom command groups
-	.registerGroups([
-		['fun', 'Fun commands'],
-		['some', 'Some group'],
-		['other', 'Some other group']
-	])
-
-	// Registers all built-in groups, commands, and argument types
-	.registerDefaults();
 
 fs.readdir("./commands/", (err, files) => {
 

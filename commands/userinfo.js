@@ -2,8 +2,6 @@ const Discord = module.require('discord.js');
 const moment = require('moment');
 
 module.exports.run = async (client, message, args) => {
-
-    let user = message.mentions.users.first() || message.author;
     const joinDiscord = moment(user.createdAt).format('llll');
     const joinServer = moment(user.joinedAt).format('llll');
     let member = message.mentions.members.first() || message.member,
@@ -21,8 +19,16 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({ embed: embed });
     return;
+    
+    if (e) {
+       return message.channel.send(e)
+    }
 }
 
-module.exports.help = {
-    name: 'userinfo'
+module.exports.config = {
+    name: "userinfo",
+    aliases: ["ui"],
+    usage: ".userinfo",
+    description: "Displays info about a user.",
+    accessibleby: "Members"
 }
