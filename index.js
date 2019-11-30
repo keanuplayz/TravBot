@@ -16,6 +16,7 @@ cron.schedule("0 0 * * *", function(){
 	console.log("h has officially been declared greater then H");
 	client.channels.get("638454695748304907").send("`daily reminder that h > H` :blue_heart:");
 	client.channels.get("550328947242434610").send("`daily reminder that h > H` :blue_heart:");
+	client.channels.get("605909799691091980").send("Ichiki is a damn cutie. Like, really cute. No escaping that.");
 });
 
 const client = new Discord.Client({
