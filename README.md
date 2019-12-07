@@ -1,4 +1,22 @@
-# Travbot [![Build Status](https://travis-ci.org/keanuplayz/TravBot.svg?branch=master)](https://travis-ci.org/keanuplayz/TravBot) [![Dependencies](https://david-dm.org/keanuplayz/travbot.svg)](https://david-dm.org/keanuplayz/travbot) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot?ref=badge_shield) [![Documentation Status](https://readthedocs.org/projects/travbot/badge/?version=latest)](https://travbot.readthedocs.io/en/latest/?badge=latest)
+<p align="center">
+  <img src="https://i.imgur.com/kEAVZA6.png"/>
+</p>
+
+<p align="center">
+<a href="https://travis-ci.org/keanuplayz/TravBot">
+<img border="0" alt="Build Status" src="https://travis-ci.org/keanuplayz/TravBot.svg?branch=master">
+</a>
+<a href="https://david-dm.org/keanuplayz/travbot">
+<img border="0" alt="Dependencies" src="https://david-dm.org/keanuplayz/travbot.svg">
+</a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot?ref=badge_shield">
+<img border="0" alt="FOSSA Status" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot.svg?type=shield">
+</a>
+<a href="https://travbot.readthedocs.io/en/latest/?badge=latest">
+<img border="0" alt="Documentation Status" src="https://readthedocs.org/projects/travbot/badge/?version=latest">
+</a>
+</p>
+
 Travbot is a Discord bot that has a small amount of uses. It was created as a joke, but ended up actually being worked on.
 
 ## Commands
