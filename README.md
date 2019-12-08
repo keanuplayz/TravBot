@@ -9,8 +9,8 @@
 <a href="https://david-dm.org/keanuplayz/travbot">
 <img border="0" alt="Dependencies" src="https://david-dm.org/keanuplayz/travbot.svg">
 </a>
-<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot?ref=badge_shield">
-<img border="0" alt="FOSSA Status" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkeanuplayz%2FTravBot.svg?type=shield">
+<a href="https://travbot.freshstatus.io/">
+<img border="0" alt="FOSSA Status" src="https://img.shields.io/uptimerobot/status/m783958465-5db2ff1c8901e385a85c7b32">
 </a>
 <a href="https://travbot.readthedocs.io/en/latest/?badge=latest">
 <img border="0" alt="Documentation Status" src="https://readthedocs.org/projects/travbot/badge/?version=latest">
@@ -24,7 +24,6 @@
 <a href="https://github.com/keanuplayz/TravBot/blob/master/package.json">
 <img border="0" alt="Node-Opus" src="https://img.shields.io/github/package-json/dependency-version/keanuplayz/travbot/node-opus">
 </a>
-
 
 </p>
 
