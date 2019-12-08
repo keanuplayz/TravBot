@@ -15,6 +15,17 @@
 <a href="https://travbot.readthedocs.io/en/latest/?badge=latest">
 <img border="0" alt="Documentation Status" src="https://readthedocs.org/projects/travbot/badge/?version=latest">
 </a>
+<a href="https://github.com/keanuplayz/TravBot/blob/master/LICENSE">
+<img border="0" alt="License" src="https://img.shields.io/github/license/keanuplayz/travbot">
+</a>
+<a href="https://github.com/keanuplayz/TravBot/blob/master/package.json">
+<img border="0" alt="Version" src="https://img.shields.io/github/package-json/v/keanuplayz/travbot">
+</a>
+<a href="https://github.com/keanuplayz/TravBot/blob/master/package.json">
+<img border="0" alt="Node-Opus" src="https://img.shields.io/github/package-json/dependency-version/keanuplayz/travbot/node-opus">
+</a>
+
+
 </p>
 
 Travbot is a Discord bot that has a small amount of uses. It was created as a joke, but ended up actually being worked on.
