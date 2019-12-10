@@ -18,7 +18,8 @@
     "jshint": "^2.10.3"
   },
   "scripts": {
-    "test": "jshint index.js"
+    "test": "jshint index.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
