@@ -13,13 +13,14 @@
     "node-opus": "^0.3.3",
     "reaction-core": "^2.3.0",
     "yt-search": "^0.4.1",
-    "ytdl-core": "1.0.1"
+    "ytdl-core": "1.0.3"
   },
   "devDependencies": {
     "jshint": "^2.10.3"
   },
   "scripts": {
-    "test": "jshint index.js"
+    "test": "jshint index.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
