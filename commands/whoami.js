@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
         "173917366504259585": "The blueberry with horns.",
         "173917366504259585": "You are a talented developer.",
         "216112465321263105": "The red strawberry cat.",
-        "394808963356688394": "The caring girl we don't deserve.",
+        "394808963356688394": "The baka girl we don't deserve.",
         "142200534781132800": "The masters of chaos.",
         "186496078273708033": "The cute blue cat.",
         "241293368267767808": "The cute catgirl.",
