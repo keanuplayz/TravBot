@@ -10,6 +10,7 @@ const path = require('path');
 
 const cron = require('node-cron');
 
+
 cron.schedule("0 0 * * *", function(){
 	const Discord = require('discord.js');
 	console.log("h has officially been declared greater then H");
@@ -17,12 +18,11 @@ cron.schedule("0 0 * * *", function(){
 	client.channels.get("550328947242434610").send("`daily reminder that h > H` :blue_heart:");
 });
 
-const client = new Discord.Client({
-	disableEveryone: true
-});
-
-const command = new Commando.Client({
-	owner: '465662909645848577'
+const client = new Commando.Client({
+	owner: ['465662909645848577', '464733215903580160'],
+	disableEveryone: true,
+	commandPrefix: '.',
+	unknownCommandResponse: false
 });
 
 const queue = new Map();
@@ -35,17 +35,12 @@ client.aliases = new Discord.Collection();
 
 const handler = new RC.Handler();
 
-command.registry
-	// Registers your custom command groups
-	.registerGroups([
-		['fun', 'Fun commands'],
-		['some', 'Some group'],
-		['other', 'Some other group']
-	])
-
-	// Registers all built-in groups, commands, and argument types
-	.registerDefaults();
-
+client.registry.registerDefaultTypes()
+		.registerDefaultGroups()
+		.registerDefaultCommands({
+			help: false,
+			unknownCommand: false
+		});
 fs.readdir("./commands/", (err, files) => {
 
 	if (err) console.log(err);
@@ -93,7 +88,6 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
 	console.log('Disconnect!');
 });
-
 
 client.on('message', async message => {
 	let prefix = ".";
