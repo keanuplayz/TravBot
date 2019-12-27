@@ -11,6 +11,7 @@ const path = require('path');
 
 const cron = require('node-cron');
 
+
 cron.schedule("0 0 * * *", function(){
 	const Discord = require('discord.js');
 	console.log("h has officially been declared greater then H");
@@ -19,12 +20,11 @@ cron.schedule("0 0 * * *", function(){
 	client.channels.get("605909799691091980").send("Ichiki is a damn cutie. Like, really cute. No escaping that.");
 });
 
-const client = new Discord.Client({
-	disableEveryone: true
-});
-
-const command = new Commando.Client({
-	owner: '465662909645848577'
+const client = new Commando.Client({
+	owner: ['465662909645848577', '464733215903580160'],
+	disableEveryone: true,
+	commandPrefix: '.',
+	unknownCommandResponse: false
 });
 
 const queue = new Map();
@@ -37,6 +37,15 @@ client.aliases = new Discord.Collection();
 
 const handler = new RC.Handler();
 
+<<<<<<< HEAD
+client.registry.registerDefaultTypes()
+		.registerDefaultGroups()
+		.registerDefaultCommands({
+			help: false,
+			unknownCommand: false
+		});
+=======
+>>>>>>> bc3e5648d8c6d33879b6295fc3f46ebbd5fa1f46
 fs.readdir("./commands/", (err, files) => {
 
 	if (err) console.log(err);
@@ -84,7 +93,6 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
 	console.log('Disconnect!');
 });
-
 
 client.on('message', async message => {
 	let prefix = ".";
