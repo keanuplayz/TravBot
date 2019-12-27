@@ -2,7 +2,11 @@ module.exports.run = (client, message, args) => {
     let sender = message.author
     let mention = message.mentions.users.first()
     const question = args.join(" ");
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> bc3e5648d8c6d33879b6295fc3f46ebbd5fa1f46
     if(!args[0]) return message.channel.send("Please ask me a question.")
     let responses= ["Most likely,",
     "It is certain,",

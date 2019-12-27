@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
+const {nsfw} = require('../config.json')
 
 module.exports.run = async (client, message, args) => {
-    let list = client.emojis.array();
+  let list = client.emojis.filter(x => !nsfw.includes(x.guild.id), this).array()
   let page = 1
   let epg = 20
   let content = ""

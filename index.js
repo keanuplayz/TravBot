@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const Commando = require('discord.js-commando');
+const moment = require('moment');
 const {
 	prefix,
 	token,
@@ -16,6 +17,7 @@ cron.schedule("0 0 * * *", function(){
 	console.log("h has officially been declared greater then H");
 	client.channels.get("638454695748304907").send("`daily reminder that h > H` :blue_heart:");
 	client.channels.get("550328947242434610").send("`daily reminder that h > H` :blue_heart:");
+	client.channels.get("605909799691091980").send("Ichiki is a damn cutie. Like, really cute. No escaping that.");
 });
 
 const client = new Commando.Client({
@@ -35,12 +37,15 @@ client.aliases = new Discord.Collection();
 
 const handler = new RC.Handler();
 
+<<<<<<< HEAD
 client.registry.registerDefaultTypes()
 		.registerDefaultGroups()
 		.registerDefaultCommands({
 			help: false,
 			unknownCommand: false
 		});
+=======
+>>>>>>> bc3e5648d8c6d33879b6295fc3f46ebbd5fa1f46
 fs.readdir("./commands/", (err, files) => {
 
 	if (err) console.log(err);
@@ -209,7 +214,12 @@ async function execute(message, serverQueue) {
 	const song = {
 		title: songInfo.title,
 		url: songInfo.video_url,
+		length: songInfo.length_seconds,
 	};
+
+	if (song.length >= 5*60) {
+		return message.channel.send("This song is too long!")
+	}
 
 	if (!serverQueue) {
 		const queueContruct = {
