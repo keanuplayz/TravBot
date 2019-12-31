@@ -17,10 +17,10 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.config = {
-    name: "eval",
+    name: "eval2",
     noalias: "No aliases",
     aliases: [],
-    usage: ".eval",
+    usage: ".eval2",
     description: "Evaluates and executes given JS code.",
     accessibleby: "Bot Owner"
 }

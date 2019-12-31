@@ -9,11 +9,14 @@
     "discord.js-commando": "^0.10.0",
     "eslint": "^6.6.0",
     "moment": "^2.24.0",
+    "nekos.life": "^2.0.4",
     "node-cron": "^2.0.3",
+    "node-fetch": "^2.6.0",
     "node-opus": "^0.3.3",
     "reaction-core": "^2.3.0",
+    "weather-js": "^2.0.0",
     "yt-search": "^0.4.1",
-    "ytdl-core": "1.0.3"
+    "ytdl-core": "1.0.5"
   },
   "devDependencies": {
     "jshint": "^2.10.3"

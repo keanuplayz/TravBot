@@ -11,6 +11,7 @@ const path = require('path');
 
 const cron = require('node-cron');
 
+
 cron.schedule("0 0 * * *", function(){
 	const Discord = require('discord.js');
 	console.log("h has officially been declared greater then H");
@@ -19,12 +20,11 @@ cron.schedule("0 0 * * *", function(){
 	client.channels.get("605909799691091980").send("Ichiki is a damn cutie. Like, really cute. No escaping that.");
 });
 
-const client = new Discord.Client({
-	disableEveryone: true
-});
-
-const command = new Commando.Client({
-	owner: '465662909645848577'
+const client = new Commando.Client({
+	owner: ['465662909645848577', '464733215903580160'],
+	disableEveryone: true,
+	commandPrefix: '.',
+	unknownCommandResponse: false
 });
 
 const queue = new Map();
@@ -37,6 +37,12 @@ client.aliases = new Discord.Collection();
 
 const handler = new RC.Handler();
 
+client.registry.registerDefaultTypes()
+		.registerDefaultGroups()
+		.registerDefaultCommands({
+			help: false,
+			unknownCommand: false
+		});
 fs.readdir("./commands/", (err, files) => {
 
 	if (err) console.log(err);
@@ -84,7 +90,6 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
 	console.log('Disconnect!');
 });
-
 
 client.on('message', async message => {
 	let prefix = ".";
@@ -209,8 +214,8 @@ async function execute(message, serverQueue) {
 		length: songInfo.length_seconds,
 	};
 
-	if (song.length >= 5*60) {
-		return message.channel.send("This song is too long!")
+	if (song.length >= 7*60) {
+		return message.channel.send("This song is too long!");
 	}
 
 	if (!serverQueue) {
