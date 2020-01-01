@@ -1,1 +1,0 @@
-Website files for TravBot website hosted on GitHub Pages.
