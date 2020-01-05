@@ -23,7 +23,8 @@
   },
   "scripts": {
     "test": "jshint index.js",
-    "start": "node server.js"
+    "start": "node index.js",
+    "test_all": "jshint ./commands/*.js"
   },
   "repository": {
     "type": "git",
