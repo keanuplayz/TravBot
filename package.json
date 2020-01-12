@@ -17,15 +17,16 @@
     "node-opus": "^0.3.3",
     "reaction-core": "^2.3.0",
     "weather-js": "^2.0.0",
-    "yt-search": "^0.4.1",
-    "ytdl-core": "1.0.3"
+    "yt-search": "^1.0.1",
+    "ytdl-core": "1.0.6"
   },
   "devDependencies": {
     "jshint": "^2.10.3"
   },
   "scripts": {
     "test": "jshint index.js",
-    "start": "node server.js"
+    "start": "node index.js",
+    "test_all": "jshint ./commands/*.js"
   },
   "repository": {
     "type": "git",

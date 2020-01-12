@@ -29,6 +29,8 @@
 
 Travbot is a Discord bot that has a small amount of uses. It was created as a joke, but ended up actually being worked on.
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W51BGKM)
+
 ## Commands
 The prefix for the bot is: `.`
 

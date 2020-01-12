@@ -81,7 +81,7 @@ module.exports = function (server) {
                     localPort: config.localPort,
                     localHost: config.localHost,
                     privateKey: config.privateKey
-                }
+                };
 
 
                 me.tunnel = tunnel(newStyleConfig, function (err) {
