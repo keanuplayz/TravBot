@@ -37,15 +37,13 @@ client.aliases = new Discord.Collection();
 
 const handler = new RC.Handler();
 
-<<<<<<< HEAD
 client.registry.registerDefaultTypes()
 		.registerDefaultGroups()
 		.registerDefaultCommands({
 			help: false,
 			unknownCommand: false
 		});
-=======
->>>>>>> bc3e5648d8c6d33879b6295fc3f46ebbd5fa1f46
+
 fs.readdir("./commands/", (err, files) => {
 
 	if (err) console.log(err);
@@ -217,7 +215,7 @@ async function execute(message, serverQueue) {
 		length: songInfo.length_seconds,
 	};
 
-	if (song.length >= 5*60) {
+	if (song.length >= 30*60) {
 		return message.channel.send("This song is too long!")
 	}
 

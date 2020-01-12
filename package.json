@@ -8,11 +8,10 @@
     "discord.js": "11.5.1",
     "discord.js-commando": "^0.10.0",
     "eslint": "^6.6.0",
+    "figlet": "^1.2.4",
+    "mathjs": "6.2.5",
     "moment": "^2.24.0",
-<<<<<<< HEAD
     "nekos.life": "^2.0.4",
-=======
->>>>>>> bc3e5648d8c6d33879b6295fc3f46ebbd5fa1f46
     "node-cron": "^2.0.3",
     "node-fetch": "^2.6.0",
     "node-opus": "^0.3.3",
