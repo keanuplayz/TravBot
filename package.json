@@ -30,8 +30,8 @@
     "start": "node index.js",
     "test_all": "jshint ./commands/*.js",
     "format": "npm run json-beautify && npm run js-beautify",
-    "js-beautify": "js-beautify -js -q -r -f ./**/*.js",
-    "json-beautify": "js-beautify -js -r -f ./**/*.json"
+    "js-beautify": "js-beautify -js -q -r -f ./**.js",
+    "json-beautify": "js-beautify -js -r -f ./**.json"
   },
   "repository": {
     "type": "git",

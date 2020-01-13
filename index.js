@@ -216,7 +216,7 @@ async function execute(message, serverQueue) {
 	};
 
 	if (song.length >= 30*60) {
-		return message.channel.send("This song is too long!")
+		return message.channel.send("This song is too long!");
 	}
 
 	if (!serverQueue) {
