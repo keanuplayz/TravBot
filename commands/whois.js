@@ -1,8 +1,7 @@
 const whoami = require("../whois.json")
 module.exports.run = (client, message, args) => {
-    	let mention = message.mentions.users.first()
-
-	message.channel.send(`<@${mention.id}> is ${whoami[mention.id]}`);
+    let mention = message.mentions.users.first()
+    message.channel.send(`<@${mention.id}> is ${whoami[mention.id]}`);
 }
 
 module.exports.config = {
