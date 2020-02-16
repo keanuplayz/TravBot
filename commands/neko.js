@@ -5,7 +5,7 @@ const neko = new client();
 
 module.exports.run = async (client, message, args) => {
     if (!args.length) {
-        return message.channel.send("Please provide an argument. For available arguments, please use `.help neko`");
+        return message.channel.send("Please provide an argument. For available arguments, please use `.help nekos`");
     } else if (args[0] === 'smug') {
         async function smug() {
             const smug = await neko.sfw.smug();
@@ -140,6 +140,6 @@ module.exports.config = {
     noaliases: "No aliases",
     aliases: [],
     usage: ".nekos <argument>",
-    description: "Provides you with a random image with the selected argument.\n**Arguments**:\n``smug``\n``baka``\n``tickle``\n``slap``\n``poke``\n``pat``\n``neko``\n``nekoGif``\n``meow``\n``lizard``\n``kiss``\n``hug``\n``foxGirl``\n``feed``\n``cuddle``\n``kemonomimi``\n``holo``\n``woof``",
+    description: "Provides you with a random image with the selected argument.\n**Arguments:**\n``smug``\n``baka``\n``tickle``\n``slap``\n``poke``\n``pat``\n``neko``\n``nekoGif``\n``meow``\n``lizard``\n``kiss``\n``hug``\n``foxGirl``\n``feed``\n``cuddle``\n``kemonomimi``\n``holo``\n``woof``",
     accessibleby: "Members"
 }

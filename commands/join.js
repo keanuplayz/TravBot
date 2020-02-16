@@ -2,7 +2,8 @@ const {ownerID} = require("../config.json");
 
 
 module.exports.run = async (client, message, args) => {
-    const channel = client.channels.get(args);
+    const channelID = args.join(" ");
+    const channel = client.channels.get(channelID);
     channel.join().then(connection => {
     message.channel.send("Successfully connected.");
   })
