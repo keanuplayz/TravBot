@@ -91,7 +91,6 @@ exports.run = async (client, message, args, level) => {
         if (err) console.log(err);
     });
 
-    message.channel.send("An entry for your user ID has been added. You can now use the command arguments.");
 };
 
 exports.conf = {
