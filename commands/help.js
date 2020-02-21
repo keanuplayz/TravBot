@@ -32,6 +32,12 @@ exports.run = (client, message, args, level) => {
     if (client.commands.has(command)) {
       command = client.commands.get(command);
       if (level < client.levelCache[command.conf.permLevel]) return;
+      let embed = new Discord.RichEmbed()
+        .setAuthor(`Help Command!`, message.guild.iconURL)
+        .setThumbnail(client.user.displayAvatarURL)
+        .setColor(colours.red_light)
+        .setDescription(`${message.author.username}, check your DM's.`)
+      message.channel.send(embed).then(m => m.delete(10000));
       message.author.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\naliases:: ${command.conf.aliases.join(", ")}\n= ${command.help.name} =`, {code:"asciidoc"});
     }
   }
