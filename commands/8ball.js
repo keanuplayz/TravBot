@@ -1,4 +1,4 @@
-module.exports.run = (client, message, args) => {
+exports.run = async (client, message, args, level) => {
     let sender = message.author
     let mention = message.mentions.users.first()
     const question = args.join(" ");
@@ -26,13 +26,19 @@ module.exports.run = (client, message, args) => {
     "Very doubtful,",
     ]
     message.channel.send(responses[Math.floor(Math.random()*responses.length)] + `<@${sender.id}>`)
-}
+};
 
-module.exports.config = {
-    name: "8ball",
-    noalias: "No aliases",
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".8ball",
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "8ball",
+    category: "Fun",
     description: "Gives you an 8-ball response.",
-    accessibleby: "Members"
-}
+    usage: "8ball [question]"
+};

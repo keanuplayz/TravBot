@@ -1,7 +1,6 @@
-const Discord = require('discord.js');
 const colours = require("../colours.json");
 
-module.exports.run = async (bot, message, args) => {
+exports.run = async (client, message, args, level) => {
     let sEmbed = new Discord.RichEmbed()
         .setColor(colours.cyan)
         .setTitle("Server Info")
@@ -15,10 +14,16 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send({sEmbed})
 }
 
-module.exports.config = {
-    name: "serverinfo",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: ["si"],
-    usage: ".serverinfo",
-    description: "Displays server info.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "serverinfo",
+    category: "Utility",
+    description: "Displays info about current guild.",
+    usage: "serverinfo"
+};

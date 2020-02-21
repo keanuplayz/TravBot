@@ -1,12 +1,17 @@
-module.exports.run =  (client, message, args) => {
-  message.channel.send("https://github.com/keanuplayz/TravBot");
+exports.run = async (client, message, args, level) => {
+    message.channel.send("https://github.com/keanuplayz/TravBot");
 }
 
-module.exports.config = {
-    name: "code",
-    noaliases: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".code",
-    description: "Gives you the GitHub link.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "code",
+    category: "Utility",
+    description: "Gives you the Github link.",
+    usage: "code"
+};

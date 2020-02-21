@@ -1,14 +1,17 @@
-const {ownerID} = require("../config.json");
-
-module.exports.run = async (client, message, args) => {
-if (message.author.id != ownerID) return message.channel.send("You are not the bot owner!")
-message.channel.delete();
+exports.run = async (client, message, args, level) => {
+    message.channel.delete();
 }
 
-module.exports.config = {
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: "Bot Admin"
+};
+
+exports.help = {
     name: "delete",
-    aliases: ["No aliases"],
-    usage: ".delete",
+    category: "Utility",
     description: "Deletes the current channel.",
-    accessibleby: "Members"
-}
+    usage: "delete"
+};

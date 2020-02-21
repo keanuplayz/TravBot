@@ -1,14 +1,17 @@
-
-module.exports.run = async (client, message, args) => {
+exports.run = async (client, message, args, level) => {
     message.reply(message.author.avatarURL);
-}
+};
 
-
-module.exports.config = {
-    name: "avatar",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".avatar",
-    description: "Gives you your avatar.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "avatar",
+    category: "Fun",
+    description: "Replies with your avatar.",
+    usage: "avatar"
+};

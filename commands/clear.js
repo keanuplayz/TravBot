@@ -1,21 +1,24 @@
-const {ownerID} = require("../config.json");
+exports.run = async (client, message, args, level) => {
+    if (isNaN(args[0])) return message.channel.send(`A number was not provided.`)
 
+    message.delete();
+    const fetched = await message.channel.fetchMessages({
+        limit: args[0]
+    });
+    console.log(fetched.size + ' messages found, deleting...');
+    message.channel.bulkDelete(fetched).catch(error => message.channel.send(`Error: ${error}`));
+};
 
-
-module.exports.run = async (client, message, args) => {
-  if (message.author.id != ownerID) return message.channel.send("You are not the bot owner!")
-  if(isNaN(args[0])) return message.channel.send(`A number was not provided.`)
-
-  message.delete();
-  const fetched = await message.channel.fetchMessages({limit: args[0]});
-  console.log(fetched.size + ' messages found, deleting...');
-  message.channel.bulkDelete(fetched).catch(error => message.channel.send(`Error: ${error}`));
-}
-module.exports.config = {
-    name: "clear",
-    noaliases: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".clear <amount>",
+    permLevel: "Bot Admin"
+};
+
+exports.help = {
+    name: "calc",
+    category: "Utility",
     description: "Clears a specified amount of messages.",
-    accessibleby: "Members"
-}
+    usage: "avatar"
+};

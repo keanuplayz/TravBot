@@ -1,4 +1,4 @@
-module.exports.run = async (client, message, args) => {
+exports.run = async (client, message, args, level) => {
     let obj = {
         "465662909645848577": "You're an idiot, that's what.",
         "306499531665833984": "Kuma, you eldritch fuck, I demand you to release me from this Discord bot and let me see my Chromebook!",
@@ -28,11 +28,16 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(response)
 }
 
-module.exports.config = {
-    name: "whoami",
-    noaliases: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".whoami",
-    description: "No. Just no.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "whoami",
+    category: "Fun",
+    description: "Tells you who you are.",
+    usage: "whoami"
+};

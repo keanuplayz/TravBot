@@ -1,21 +1,24 @@
-const {ownerID} = require("../config.json");
+exports.run = async (client, message, args, level) => {
+    if (args[0]) {
+        message.delete();
+        client.user.setActivity(args.join(" "));
+    } else {
+        message.delete();
+        client.user.setActivity('.help', { type: 'LISTENING' });
+    } 
 
-module.exports.run = async (client, message, args) => {
-  if (message.author.id != ownerID) return message.channel.send("You are not the bot owner!")
-  if (args[0]) {
-    message.delete();
-    client.user.setActivity(args.join(" "));
-  } else {
-    message.delete();
-    client.user.setActivity('.help', { type: 'LISTENING' });
-  } 
 }
 
-module.exports.config = {
-    name: "game",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".game",
-    description: "Sets game.",
-    accessibleby: "Bot Owner"
-}
+    permLevel: "Bot Admin"
+};
+
+exports.help = {
+    name: "game",
+    category: "System",
+    description: "Change playing status.",
+    usage: "game [input]"
+};

@@ -1,7 +1,4 @@
-
-const Discord = require('discord.js');
-
-module.exports.run = (client, message, args) => {
+exports.run = async (client, message, args, level) => {
     const figlet = require('figlet');
     const input = args.join(" ");
 
@@ -14,11 +11,16 @@ module.exports.run = (client, message, args) => {
     console.error();
 }
 
-module.exports.config = {
-    name: "figlet",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".figlet",
-    description: "Sends a figlet of your input.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "figlet",
+    category: "Fun",
+    description: "Generates a figlet of your input.",
+    usage: "figlet [text]"
+};

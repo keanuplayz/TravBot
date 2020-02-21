@@ -1,18 +1,22 @@
-const {ownerID} = require("../config.json");
-
-
-module.exports.run = async (client, message, args) => {
-    const channel = client.channels.get(args);
+/* eslint-disable no-unused-vars */
+exports.run = async (client, message, args, level) => {
+    const channelID = args.join(" ");
+    const channel = client.channels.get(channelID);
     channel.leave().then(connection => {
-    message.channel.send("Successfully connected.");
-  })
-}
+    message.channel.send("Successfully disconnected.");
+  });
+};
 
-module.exports.config = {
-    name: "join",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".join",
-    description: "Joins the specified voice channel.",
-    accessibleby: "Bot Owner"
-}
+    permLevel: "Bot Admin"
+};
+
+exports.help = {
+    name: "leave",
+    category: "Utility",
+    description: "Leaves the current voice channel.",
+    usage: "leave"
+};

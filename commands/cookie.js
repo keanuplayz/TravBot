@@ -1,5 +1,5 @@
-module.exports.run = async (client, message, args) => {
-    let sender = message.author
+exports.run = async (client, message, args, level) => {
+let sender = message.author
     let mention = message.mentions.users.first()
     let cookies = [
         `has given <@${mention.id}> a chocolate chip cookie!`,
@@ -31,11 +31,16 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(`:cookie: <@${sender.id}> ` + cookies[Math.floor(Math.random() * cookies.length)])
 }
 
-module.exports.config = {
-    name: "cookie",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".cookie",
-    description: "Gives random user a cookie.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "cookie",
+    category: "Fun",
+    description: "Gives specified user a module.",
+    usage: "cookie [@user]"
+};

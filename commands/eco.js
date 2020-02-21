@@ -2,9 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const moment = require('moment');
 
-
-module.exports.run = (client, message, args) => {
-
+exports.run = async (client, message, args, level) => {
     if (message.guild != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.")
 
     let UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", 'utf8'));
@@ -95,14 +93,18 @@ module.exports.run = (client, message, args) => {
     })
 
     message.channel.send("An entry for your user ID has been added. You can now use the command arguments.")
-
 }
 
-module.exports.config = {
-    name: "eco",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".eco",
-    description: "Allows you to do economy stuff. For Monika.\n**Arguments:**\n``",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "eco",
+    category: "Fun",
+    description: "Economy command for Monika.",
+    usage: "eco [argument]"
+};

@@ -1,21 +1,21 @@
-const Discord = require('discord.js');
-const {nsfw} = require('../config.json')
+const Discord = require("discord.js");
+const {nsfw} = require("../config.js");
 
-module.exports.run = async (client, message, args) => {
-  let list = client.emojis.filter(x => !nsfw.includes(x.guild.id), this).array()
-  let page = 1
-  let epg = 20
-  let content = ""
-  const left = "⬅", right ="➡"
+exports.run = async (client, message) => {
+  const list = client.emojis.filter(x => !nsfw.includes(x.guild.id), this).array();
+  let page = 1;
+  const epg = 20;
+  let content = "";
+  const left = "⬅", right ="➡";
   var embed = new Discord.RichEmbed()
   .setTitle("**Emoji list!**")
   .setColor(message.guild.me.displayHexColor);
   
   let owo = list.slice((page - 1) * epg, page * epg);
   owo.forEach(q=>content+= q.toString() +" | "+q.name+"\n");
-  embed.setDescription(content)
-  let msg = await message.channel.send({ embed });
-  if(list.length<epg) return;
+  embed.setDescription(content);
+  const msg = await message.channel.send({ embed });
+  if (list.length<epg) return;
   
   await msg.react("⬅");
   await msg.react("➡");
@@ -24,35 +24,41 @@ module.exports.run = async (client, message, args) => {
   const backwards = msg.createReactionCollector(backwardsfilter, {time: 300000});
   const forwards = msg.createReactionCollector(forwardsfilter, {time: 300000});
 
-  backwards.on("collect", r => {
+  backwards.on("collect", () => {
     if (page < 2) return;
     msg.reactions.find(uwu => (uwu.emoji.name = "⬅")).remove(message.author);
     page--;
 
     owo = list.slice((page - 1) * epg, page * epg);
-    content=""
+    content="";
     owo.forEach(q=>content+= q.toString() +" | "+q.name+"\n");
-    embed.setDescription(content)
+    embed.setDescription(content);
     msg.edit(embed);
   });
 
-  forwards.on("collect", r => {
+  forwards.on("collect", () => {
     if (page > Math.ceil(list.length/epg)) return;
     page++;
     msg.reactions.find(uwu => uwu.emoji.name == "➡").remove(message.author);
 
     owo = list.slice((page - 1) * epg, page * epg);
-    content=""
+    content="";
     owo.forEach(q=>content+= q.toString() +" | "+q.name+"\n");
-    embed.setDescription(content)
+    embed.setDescription(content);
     msg.edit(embed);
   });
-}
+};
 
-module.exports.config = {
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: ["lsemote", "le"],
+    permLevel: "User"
+};
+
+exports.help = {
     name: "listemote",
-    aliases: ["le"],
-    usage: ".listemote",
-    description: "Lists all available emotes.",
-    accessibleby: "Members"
-}
+    category: "Utility",
+    description: "Sends an interactive emote list.",
+    usage: "listemote"
+};

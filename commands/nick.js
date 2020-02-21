@@ -1,24 +1,25 @@
-const {ownerID} = require("../config.json");
-
-
-module.exports.run = async (client, message, args) => {
-    if (message.author.id != ownerID) return message.channel.send("You are not the bot owner!")
-    try{
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+    try {
         const nickName = args.join(" ");
-        const lea = message.guild.members.find('id', client.user.id);
-        await lea.setNickname(nickName);
+        const trav = message.guild.members.find("id", client.user.id);
+        await trav.setNickname(nickName);
         message.delete(5000);
         message.channel.send(`Nickname set to \`${nickName}\``).then(m => m.delete(5000));
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
-}
+};
 
-module.exports.config = {
-    name: "nick",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".nick",
-    description: "Changes bot nickname.",
-    accessibleby: "Bot Owner"
-}
+    permLevel: "Bot Admin"
+};
+
+exports.help = {
+    name: "nick",
+    category: "Utility",
+    description: "Changes nickname to input.",
+    usage: "nick [input]"
+};

@@ -1,7 +1,7 @@
-const Discord = require("discord.js")
+// NOTE: Add the images! (/assets/ravi.png)
 
-module.exports.run = async (client, message, args) => {
-	if (!args.length || isNaN(args[0]) || args[0]<1 || args[0]>9) return message.channel.send(`Please provide a number between 1 and 9.`);
+exports.run = async (client, message, args, level) => {
+    if (!args.length || isNaN(args[0]) || args[0]<1 || args[0]>9) return message.channel.send(`Please provide a number between 1 and 9.`);
 	let file = new Discord.Attachment(`assets/ravi${args[0]}.png`)
 	const embed = {
 		title: 'Ravioli ravioli...',
@@ -10,13 +10,18 @@ module.exports.run = async (client, message, args) => {
 		}
 	}
     message.channel.send({ files: [file], embed: embed });
+}
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: [],
+    permLevel: "User"
 };
 
-module.exports.config = {
+exports.help = {
     name: "ravi",
-    noaliases: "No aliases",
-    aliases: [],
-    usage: ".ravi <number>",
+    category: "Fun",
     description: "Ravioli ravioli...",
-    accessibleby: "Members"
-}
+    usage: "ravi [number]"
+};

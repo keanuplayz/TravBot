@@ -1,4 +1,4 @@
-module.exports.run = (client, message, args) => {
+exports.run = async (client, message, args, level) => {
     let responses= ["boomer",
     "zoomer",
     "the last generationer",
@@ -57,11 +57,16 @@ module.exports.run = (client, message, args) => {
     message.channel.send("ok "+ responses[Math.floor(Math.random()*responses.length)])
 }
 
-module.exports.config = {
-    name: "ok",
-    noalias: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".ok",
-    description: "Sends random ok message. (broken)",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "ok",
+    category: "Fun",
+    description: "Sends random ok message.",
+    usage: "ok"
+};

@@ -1,28 +1,25 @@
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+  if (!args || args.length < 1) return message.reply("Must provide a command to reload. Derp.");
+  const command = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
+  let response = await client.unloadCommand(args[0]);
+  if (response) return message.reply(`Error Unloading: ${response}`);
 
-const {ownerID} = require("../config.json");
+  response = client.loadCommand(command.help.name);
+  if (response) return message.reply(`Error Loading: ${response}`);
 
-module.exports.run = async (client, message, args) => {
-    if(message.author.id != ownerID) return message.channel.send("You are not the bot owner.")
-    if(!args[0]) return message.channel.send("Please provide a command to reload.").then(m => m.delete(5000));
-    let commandName = args[0].toLowerCase()
+  message.reply(`The command \`${command.help.name}\` has been reloaded`);
+};
 
-    try {
-        delete require.cache[require.resolve(`./${commandName}.js`)] //usage !reload <name>
-        client.commands.delete(commandName)
-        const pull = require(`./${commandName}.js`)
-        client.commands.set(commandName, pull)
-    } catch(e) {
-        console.log(e.stack);
-        return message.channel.send(`Could not reload \`${args[0].toUpperCase()}\``).then(m => m.delete(5000));
-    }
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "Bot Admin"
+};
 
-    message.channel.send(`The command \`${args[0].toUpperCase()}\` has been reloaded.`).then(m => m.delete(5000));
-}
-
-module.exports.config = {
-    name: "reload",
-    aliases: ["rl"],
-    usage: ".reload <command name>",
-    description: "Reloads given command.",
-    accessibleby: "Bot Owner"
-}
+exports.help = {
+  name: "reload",
+  category: "System",
+  description: "Reloads a command.",
+  usage: "reload [command]"
+};

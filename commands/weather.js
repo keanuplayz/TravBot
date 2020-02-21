@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
-const config = require("../config.json");
-const prefix = config.prefix
 var weather = require('weather-js');
 
-module.exports.run = async (client, message, args) => {
+exports.run = async (client, message, args, level) => {
     if(args.length == 0) return message.channel.send('You need to provide a city.');
 
     weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
@@ -26,14 +24,18 @@ module.exports.run = async (client, message, args) => {
         message.channel.send({embed});
 
     });
-
 }
 
-module.exports.config = {
-    name: "weather",
-    noaliases: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".weather",
-    description: "Tells you the weather of the selected town/city.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "weather",
+    category: "Fun",
+    description: "Shows weather info of specified location.",
+    usage: "weather [location]"
+};

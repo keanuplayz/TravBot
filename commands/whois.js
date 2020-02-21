@@ -1,14 +1,20 @@
 const whoami = require("../whois.json")
-module.exports.run = (client, message, args) => {
+
+exports.run = async (client, message, args, level) => {
     let mention = message.mentions.users.first()
     message.channel.send(`<@${mention.id}> is ${whoami[mention.id]}`);
 }
 
-module.exports.config = {
-    name: "whois",
-    noaliases: "No aliases",
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".whois",
-    description: "Gives you the whoami message for the mentioned user.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+
+exports.help = {
+    name: "whois",
+    category: "Fun",
+    description: "Tells you who the specified user is.",
+    usage: "whois [@user]"
+};
