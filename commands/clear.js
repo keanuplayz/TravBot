@@ -17,7 +17,7 @@ exports.conf = {
 };
 
 exports.help = {
-    name: "calc",
+    name: "clear",
     category: "Utility",
     description: "Clears a specified amount of messages.",
     usage: "avatar"
