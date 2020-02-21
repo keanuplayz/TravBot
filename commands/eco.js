@@ -1,20 +1,21 @@
-const Discord = require('discord.js');
-const fs = require('fs');
-const moment = require('moment');
+/* eslint-disable no-unused-vars */
+const Discord = require("discord.js");
+const fs = require("fs");
+const moment = require("moment");
 
 exports.run = async (client, message, args, level) => {
-    if (message.guild != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.")
+    if (message.guild != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
 
-    let UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", 'utf8'));
-    let sender = message.author;
+    const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
+    const sender = message.author;
 
-    if(!UserData[sender.id + message.guild.id]) UserData[sender.id + message.guild.id] = {}
-    if(!UserData[sender.id + message.guild.id].money) UserData[sender.id + message.guild.id].money = 1;
-    if(!UserData[sender.id + message.guild.id].lastDaily) UserData[sender.id + message.guild.id].lastDaily = 'Not Collected';
-    if(!UserData[sender.id + message.guild.id].userid) UserData[sender.id + message.guild.id].userid = message.author.id;
+    if (!UserData[sender.id + message.guild.id]) UserData[sender.id + message.guild.id] = {};
+    if (!UserData[sender.id + message.guild.id].money) UserData[sender.id + message.guild.id].money = 1;
+    if (!UserData[sender.id + message.guild.id].lastDaily) UserData[sender.id + message.guild.id].lastDaily = "Not Collected";
+    if (!UserData[sender.id + message.guild.id].userid) UserData[sender.id + message.guild.id].userid = message.author.id;
 
     // Balance Command
-    if(args[0] == "balance" || args[0] == "money") {
+    if (args[0] == "balance" || args[0] == "money") {
         message.channel.send({embed:{
             title: "Bank",
             color: 0xF1C40F,
@@ -29,32 +30,32 @@ exports.run = async (client, message, args, level) => {
                 inline: true
             }]
 
-        }})
+        }});
     }
 
     // Daily Mon Command
-    if(args[0] == "daily") {
-        if (UserData[sender.id + message.guild.id].lastDaily != moment().format('L')) {
-            UserData[sender.id + message.guild.id].lastDaily = moment().format('L')
+    if (args[0] == "daily") {
+        if (UserData[sender.id + message.guild.id].lastDaily != moment().format("L")) {
+            UserData[sender.id + message.guild.id].lastDaily = moment().format("L");
             UserData[sender.id + message.guild.id].money += 1;
             message.channel.send({embed: {
                 title: "Daily Reward",
                 description: "You received 1 Mon!",
                 color: 0xF1C40F,
-            }})
+            }});
         } else {
             message.channel.send({embed: {
                 title: "Daily Reward",
-                description: "You already claimed your daily Mon. You can collect your next Mon **" + moment().endOf('day').fromNow() + '**.',
+                description: "You already claimed your daily Mon. You can collect your next Mon **" + moment().endOf("day").fromNow() + "**.",
                 color: 0xF1C40F,
-            }})
+            }});
         }
     }
 
-    if(args[0] == "guild") {
+    if (args[0] == "guild") {
         var guildMoney = 0; // Total amount of Mons in guild.
         var guildUsers = 0;
-        var guildRichest = ''; // Richest user in guild.
+        var guildRichest = ""; // Richest user in guild.
         var guildRichest$ = 0; // Amount of Mons that richest user has.
 
         for (var i in UserData) {
@@ -85,15 +86,15 @@ exports.run = async (client, message, args, level) => {
                 name: "Richest Account",
                 value: `${guildRichest} with ${guildRichest$}`
             }]
-        }})
+        }});
     }
 
     fs.writeFile(__dirname + "/storage/UserData.json", JSON.stringify(UserData), (err) => {
         if (err) console.log(err);
-    })
+    });
 
-    message.channel.send("An entry for your user ID has been added. You can now use the command arguments.")
-}
+    message.channel.send("An entry for your user ID has been added. You can now use the command arguments.");
+};
 
 exports.conf = {
     enabled: true,

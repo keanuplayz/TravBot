@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
     var user = client.guilds.get(message.guild.id).members.random();
-    message.channel.send(`I love ${user.user.username}!`)
-}
+    message.channel.send(`I love ${user.user.username}!`);
+};
 
 exports.conf = {
     enabled: true,
@@ -14,5 +15,5 @@ exports.help = {
     name: "love",
     category: "Fun",
     description: "Chooses someone to love.",
-    usage: "love [@user]"
+    usage: "love"
 };

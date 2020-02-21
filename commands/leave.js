@@ -18,5 +18,5 @@ exports.help = {
     name: "leave",
     category: "Utility",
     description: "Leaves the current voice channel.",
-    usage: "leave"
+    usage: "leave [channel id]"
 };

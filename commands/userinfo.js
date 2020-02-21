@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const colours = require("../colours.json");
 const moment = require("moment");
 const Discord = require("discord.js");

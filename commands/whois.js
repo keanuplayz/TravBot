@@ -1,9 +1,10 @@
-const whoami = require("../whois.json")
+/* eslint-disable no-unused-vars */
+const whoami = require("../whois.json");
 
 exports.run = async (client, message, args, level) => {
-    let mention = message.mentions.users.first()
+    const mention = message.mentions.users.first();
     message.channel.send(`<@${mention.id}> is ${whoami[mention.id]}`);
-}
+};
 
 exports.conf = {
     enabled: true,

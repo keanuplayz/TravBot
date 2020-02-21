@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
-    let responses= ["boomer",
+    const responses= ["boomer",
     "zoomer",
     "the last generationer",
     "the last airbender",
@@ -53,9 +54,9 @@ exports.run = async (client, message, args, level) => {
     "fox",
     "pear",
     "cat",
-    "large man"]
-    message.channel.send("ok "+ responses[Math.floor(Math.random()*responses.length)])
-}
+    "large man"];
+    message.channel.send("ok "+ responses[Math.floor(Math.random()*responses.length)]);
+};
 
 exports.conf = {
     enabled: true,

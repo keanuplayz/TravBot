@@ -144,6 +144,6 @@ exports.conf = {
 exports.help = {
     name: "neko",
     category: "Fun",
-    description: "Provides you with a random image with the selected argument. Arguments: https://keanu-code.netlify.com/files/nekoargs.txt",
+    description: "Provides you with a random image with the selected argument.\nArguments: https://keanu-code.netlify.com/files/nekoargs.txt",
     usage: "neko [argument]"
 };
