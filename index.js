@@ -1,13 +1,33 @@
 if (Number(process.version.slice(1).split(".")[0]) < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
 
 const Discord = require("discord.js");
+const Commando = require("discord.js-commando");
+const cron = require("node-cron");
+cron.schedule("0 0 * * *", function() {
+	const Discord = require("discord.js");
+	console.log("Ichiki has been declared a cutie.");
+	client.channels.get("605909799691091980").send("Ichikutie is a cute Ichikutie. Like, really cute. No escaping Ichikutie.");
+});
+
 const {
     promisify
 } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
 
-const client = new Discord.Client();
+const client = new Commando.Client({
+	owner: ["465662909645848577", "464733215903580160"],
+	disableEveryone: true,
+	commandPrefix: ".",
+	unknownCommandResponse: false
+});
+
+client.registry.registerDefaultTypes()
+		.registerDefaultGroups()
+		.registerDefaultCommands({
+			help: false,
+			unknownCommand: false
+		});
 
 client.config = require("./config.js");
 
@@ -21,7 +41,6 @@ client.aliases = new Enmap();
 client.settings = new Enmap({
     name: "settings"
 });
-
 
 const init = async () => {
 
