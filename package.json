@@ -9,7 +9,7 @@
         "discord.js-commando": "^0.10.0",
         "eslint": "^6.6.0",
         "figlet": "^1.2.4",
-        "mathjs": "6.6.0",
+        "mathjs": "6.6.1",
         "moment": "^2.24.0",
         "moment-duration-format": "^2.3.2",
         "nekos.life": "^2.0.4",
