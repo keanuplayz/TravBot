@@ -5,7 +5,7 @@ const fs = require("fs");
 let baseConfig = fs.readFileSync("./config_base.txt", "utf8");
 
 const defaultSettings = {
-    "prefix": "~",
+    "prefix": ".",
     "modLogChannel": "mod-log",
     "modRole": "Moderator",
     "adminRole": "Administrator",
@@ -17,7 +17,7 @@ const defaultSettings = {
 
 const settings = new Enmap({
     name: "settings",
-    cloneLevel: 'deep',
+    cloneLevel: "deep",
     ensureProps: true
 });
 
@@ -41,7 +41,7 @@ let prompts = [{
 ];
 
 (async function() {
-    console.log("Setting Up GuideBot Configuration...");
+    console.log("Setting Up TravBot Configuration...");
     await settings.defer;
     if (!settings.has("default")) {
         prompts = prompts.slice(1);

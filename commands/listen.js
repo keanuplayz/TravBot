@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
     if (args[0]) {
         message.delete();
-        client.user.setActivity(args.join(" "), { type: 'LISTENING' });
+        client.user.setActivity(args.join(" "), { type: "LISTENING" });
     } else {
         message.delete();
-        client.user.setActivity('.help', { type: 'LISTENING' });
+        client.user.setActivity(".help", { type: "LISTENING" });
     } 
-}
+};
 
 exports.conf = {
     enabled: true,

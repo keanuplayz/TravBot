@@ -1,4 +1,5 @@
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+ /* eslint-disable no-unused-vars */
+exports.run = async (client, message, args, level) => {
     try {
         const nickName = args.join(" ");
         const trav = message.guild.members.find("id", client.user.id);

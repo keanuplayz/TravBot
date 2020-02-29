@@ -1,8 +1,9 @@
 /* eslint-disable no-inner-declarations */
+/* eslint-disable no-unused-vars */
 const client = require("nekos.life");
 const neko = new client();
 
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => {
     if (!args.length) {
         return message.channel.send("Please provide an argument. For available arguments, please use `.help neko`");
     } else if (args[0] === "smug") {

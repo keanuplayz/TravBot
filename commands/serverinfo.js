@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+const Discord = require("discord.js");
 const colours = require("../colours.json");
 
 exports.run = async (client, message, args, level) => {
-    let sEmbed = new Discord.RichEmbed()
+    const sEmbed = new Discord.RichEmbed()
         .setColor(colours.cyan)
         .setTitle("Server Info")
         .setThumbnail(message.guild.iconUrl)
@@ -10,9 +12,9 @@ exports.run = async (client, message, args, level) => {
         .addField("**Guild Owner:**", `${message.guild.owner}`, true)
         .addField("**Member Count:**", `${message.guild.memberCount}`, true)
         .addField("**Role Count:**", `${message.guild.roles.size}`, true)
-        .setFooter(`Travbot Services`, bot.user.displayAvatarURL);
-    message.channel.send({sEmbed})
-}
+        .setFooter("Travbot Services", client.user.displayAvatarURL);
+    message.channel.send({sEmbed});
+};
 
 exports.conf = {
     enabled: true,

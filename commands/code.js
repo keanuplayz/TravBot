@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
     message.channel.send("https://github.com/keanuplayz/TravBot");
-}
+};
 
 exports.conf = {
     enabled: true,

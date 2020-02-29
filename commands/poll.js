@@ -8,8 +8,8 @@ exports.run = async (client, message, args, level) => {
         .setAuthor(`Poll created by ${message.author.username}`, message.guild.iconURL)
         .setColor(0xffffff)
         .setFooter("React to vote.")
-        .setDescription(args.join(" "))
-    let msg = await message.channel.send(embed);
+        .setDescription(args.join(" "));
+    const msg = await message.channel.send(embed);
 
     await msg.react("✅");
     await msg.react("⛔");

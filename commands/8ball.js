@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
-    let sender = message.author
-    let mention = message.mentions.users.first()
+    const sender = message.author;
+    const mention = message.mentions.users.first();
     const question = args.join(" ");
 
-    if(!args[0]) return message.channel.send("Please ask me a question.")
-    let responses= ["Most likely,",
+    if (!args[0]) return message.channel.send("Please ask me a question.");
+    const responses= ["Most likely,",
     "It is certain,",
     "It is decidedly so,",
     "Without a doubt,",
@@ -24,8 +25,8 @@ exports.run = async (client, message, args, level) => {
     "My sources say no,",
     "Outlook not so good,",
     "Very doubtful,",
-    ]
-    message.channel.send(responses[Math.floor(Math.random()*responses.length)] + `<@${sender.id}>`)
+    ];
+    message.channel.send(responses[Math.floor(Math.random()*responses.length)] + `<@${sender.id}>`);
 };
 
 

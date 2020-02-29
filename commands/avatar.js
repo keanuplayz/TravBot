@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
     message.reply(message.author.avatarURL);
 };
