@@ -1,21 +1,18 @@
 /* eslint-disable no-unused-vars */
 const whoami = require("../whois.json");
-
 exports.run = async (client, message, args, level) => {
-    const mention = message.mentions.users.first();
-    message.channel.send(`<@${mention.id}> is ${whoami[mention.id]}`);
+   const mention = message.mentions.users.first();
+   message.channel.send(`<@${mention.id}> is ${whoami[mention.id]}`);
 };
-
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: "User"
+   enabled: true,
+   guildOnly: false,
+   aliases: [],
+   permLevel: "User"
 };
-
 exports.help = {
-    name: "whois",
-    category: "Fun",
-    description: "Tells you who the specified user is.",
-    usage: "whois [@user]"
+   name: "whois",
+   category: "Fun",
+   description: "Tells you who the specified user is.",
+   usage: "whois [@user]"
 };
