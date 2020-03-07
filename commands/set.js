@@ -48,7 +48,7 @@ exports.conf = {
    aliases: [
       "setting", "settings"
    ],
-   permLevel: "Bot Admin"
+   permLevel: "Server Owner"
 };
 exports.help = {
    name: "set",
