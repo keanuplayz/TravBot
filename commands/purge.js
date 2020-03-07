@@ -22,14 +22,14 @@ exports.run = async (client, message, args, level) => {
    }
 };
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: "Server Owner"
+   enabled: true,
+   guildOnly: false,
+   aliases: [],
+   permLevel: "Server Owner"
 };
 exports.help = {
-    name: "purge",
-    category: "Utility",
-    description: "Purges all bot messages.",
-    usage: "purge [--silent]"
+   name: "purge",
+   category: "Utility",
+   description: "Purges all bot messages.",
+   usage: "purge [--silent]"
 };
