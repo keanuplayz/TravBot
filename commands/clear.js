@@ -10,14 +10,14 @@ exports.run = async (client, message, args, level) => {
       .catch(error => message.channel.send(`Error: ${error}`));
 };
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: "Server Owner"
+   enabled: true,
+   guildOnly: false,
+   aliases: [],
+   permLevel: "Server Owner"
 };
 exports.help = {
-    name: "clear",
-    category: "Utility",
-    description: "Clears a specified amount of messages.",
-    usage: "clear [amount]"
+   name: "clear",
+   category: "Utility",
+   description: "Clears a specified amount of messages.",
+   usage: "clear [amount]"
 };
