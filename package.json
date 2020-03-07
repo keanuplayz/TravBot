@@ -30,8 +30,7 @@
         "test_all": "jshint ./commands/*.js",
         "format": "npm run json-beautify && npm run js-beautify",
         "js-beautify": "js-beautify -js -q -r -f ./**.js",
-        "json-beautify": "js-beautify -js -r -f ./**.json",
-        "postinstall": "node setup.js"
+        "json-beautify": "js-beautify -js -r -f ./**.json"
     },
     "engines": {
         "node": ">=8"

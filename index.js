@@ -17,7 +17,7 @@ const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
 
 const client = new Commando.Client({
-	owner: ["465662909645848577", "464733215903580160"],
+	owner: ["465662909645848577", "464733215903580160", "465702500146610176", "630352550125895692"],
 	disableEveryone: true,
 	commandPrefix: ".",
 	unknownCommandResponse: false
