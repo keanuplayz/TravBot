@@ -43,12 +43,10 @@ exports.run = async (client, message, [
    }
 };
 exports.conf = {
-   enabled: true,
-   guildOnly: true,
-   aliases: [
-      "setting", "settings"
-   ],
-   permLevel: "Bot Admin"
+  enabled: true,
+  guildOnly: true,
+  aliases: ["setting", "settings"],
+  permLevel: "Server Owner"
 };
 exports.help = {
    name: "set",
