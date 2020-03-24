@@ -30,5 +30,40 @@
       "space_in_empty_paren": true,
       "space_in_paren": false,
       "wrap_line_length": 0
+    },
+    "JSON": {
+      "beautifiers": [
+        "Prettier",
+        "Pretty Diff",
+        "JS-Beautify"
+      ],
+      "align_assignments": true,
+      "arrow_parens": "always",
+      "brace_style": "collapse",
+      "break_chained_methods": true,
+      "comma_first": false,
+      "end_with_comma": true,
+      "end_with_newline": true,
+      "end_with_semicolon": true,
+      "indent_comments": true,
+      "indent_size": 3,
+      "indent_style": "space",
+      "jslint_happy": true,
+      "keep_array_indentation": true,
+      "max_preserve_newlines": 0,
+      "multiline_ternary": "always",
+      "newline_between_rules": true,
+      "no_leading_zero": true,
+      "object_curly_spacing": true,
+      "pragma_insert": false,
+      "pragma_require": false,
+      "preserve_newlines": true,
+      "quotes": "double",
+      "space_after_anon_function": false,
+      "space_before_conditional": true,
+      "space_in_empty_paren": false,
+      "space_in_paren": true,
+      "unindent_chained_methods": true,
+      "wrap_line_length": 0
     }
   }
