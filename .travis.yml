@@ -18,6 +18,8 @@ cache:
 
 before_install:
     - npm i -g npm
+    - git remote remove origin
+    - git remote add origin https://$KEANU_TOKEN@github.com/keanuplayz/TravBot.git
     - git checkout -b travis-beautify
 
 script:
