@@ -20,7 +20,7 @@ before_install:
     - npm i -g npm
     - git remote remove origin
     - git remote add origin https://$KEANU_TOKEN@github.com/keanuplayz/TravBot.git
-    - git checkout -b travis-beautify
+    - git checkout -b travis
 
 script:
     - git config --global user.email "travis@travis-ci.org"
@@ -29,4 +29,4 @@ script:
     - npm run format
     - git add .
     - git commit --message "Travis beautify build $TRAVIS_BUILD_NUMBER"
-    - git push --set-upstream origin travis-beautify
+    - git push --set-upstream origin travis
