@@ -6,6 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
+  git fetch
   git checkout dev
   npm run format
   git add .
@@ -14,7 +15,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin https://${KEANU_TOKEN}@github.com/keanuplayz/TravBot.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin dev
+  git push origin dev
 }
 
 setup_git
