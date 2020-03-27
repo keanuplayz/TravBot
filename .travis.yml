@@ -1,16 +1,31 @@
 os: linux
+
 dist: xenial
+
 language: node_js
+
 node_js:
     - 13
-before_install:
-    - npm i -g npm
+
 branches:
     only:
         - master
         - dev
         - travis
+
 cache:
     npm: false
-after_success:
-    - bash ./push.sh
+
+before_install:
+    - npm i -g npm
+
+script:
+    - git remote add origin https://$KEANU_TOKEN@github.com/keanuplayz/TravBot.git
+    - git config --global user.email "travis@travis-ci.org"
+    - git config --global user.name "Travis CI"
+    - git fetch
+    - git checkout dev
+    - npm run format
+    - git add .
+    - "git commit --message Travis beautify build: $TRAVIS_BUILD_NUMBER"
+    - git push origin dev
