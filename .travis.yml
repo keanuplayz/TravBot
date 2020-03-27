@@ -26,5 +26,5 @@ script:
     - git fetch
     - npm run format
     - git add .
-    - git commit --message "Travis beautify build $TRAVIS_BUILD_NUMBER
-    - git push origin dev
+    - git commit --message "Travis beautify build $TRAVIS_BUILD_NUMBER"
+    - git push
