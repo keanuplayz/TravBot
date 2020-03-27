@@ -27,4 +27,4 @@ script:
     - npm run format
     - git add .
     - git commit --message "Travis beautify build $TRAVIS_BUILD_NUMBER"
-    - git push
+    - git push --set-upstream origin travis-beautify
