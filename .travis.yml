@@ -28,5 +28,5 @@ script:
     - git config --global user.name "Travis CI"
     - npm run format
     - git add .
-    - git commit --message "Travis beautify build $TRAVIS_BUILD_NUMBER"
+    - git commit --message "Travis beautify build $TRAVIS_BUILD_NUMBER" || true
     - git push --set-upstream origin HEAD:$TRAVIS_BRANCH
