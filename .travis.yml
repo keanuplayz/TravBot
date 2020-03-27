@@ -7,6 +7,11 @@ language: node_js
 node_js:
     - 13
 
+git:
+    strategy: clone
+    depth: false
+    quiet: false
+
 branches:
     only:
         - master
@@ -18,14 +23,13 @@ cache:
 
 before_install:
     - npm i -g npm
+    - git checkout -b travis-beautify
 
 script:
-    - git remote add origin https://$KEANU_TOKEN@github.com/keanuplayz/TravBot.git
     - git config --global user.email "travis@travis-ci.org"
     - git config --global user.name "Travis CI"
     - git fetch
-    - git checkout dev
     - npm run format
     - git add .
-    - "git commit --message Travis beautify build: $TRAVIS_BUILD_NUMBER"
+    - "git commit --message "Travis beautify build: $TRAVIS_BUILD_NUMBER""
     - git push origin dev
