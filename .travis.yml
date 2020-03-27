@@ -13,6 +13,8 @@ branches:
         - dev
         - travis
 
+if: commit_message !~ /Travis beautify build/
+
 cache:
     npm: false
 
