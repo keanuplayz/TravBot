@@ -1,0 +1,15 @@
+os: linux
+dist: xenial
+language: node_js
+node_js:
+    - 13
+before_install:
+    - npm i -g npm
+branches:
+    only:
+        - master
+        - stable
+cache:
+    npm: false
+after_success:
+    - .travis/push.sh

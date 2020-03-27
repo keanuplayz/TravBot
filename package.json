@@ -27,11 +27,11 @@
    },
    "scripts": {
       "start": "node index.js",
-      "lint": "jshint index.js",
+      "lint": "eslint ./commands/*.js && eslint ./*.js",
       "test_all": "jshint ./commands/*.js",
       "format": "npm run json-beautify && npm run js-beautify",
-      "js-beautify": "js-beautify -js -q -r -f ./**.js",
-      "json-beautify": "js-beautify -js -r -f ./**.json"
+      "js-beautify": "js-beautify -js -q -r -f ./**.js && js-beautify -js -q -r -f ./commands/**.js",
+      "json-beautify": "js-beautify -js -r -f ./**.json && js-beautify -js -r -f ./commands/storage/**.json"
    },
    "engines": {
       "node": ">=8"
