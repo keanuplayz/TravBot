@@ -13,4 +13,4 @@ branches:
 cache:
     npm: false
 after_success:
-    - .travis/push.sh
+    - push.sh
