@@ -16,7 +16,7 @@ branches:
 if: commit_message !~ /Travis beautify build/
 
 cache:
-    npm: false
+    npm: true
 
 before_install:
     - npm i -g npm
