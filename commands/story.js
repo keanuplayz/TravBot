@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
-  if (!args[0]) return message.channel.send("Please specify a story name.");
+    if (!args[0]) return message.channel.send("Please specify a story name.");
 };
 exports.conf = {
     enabled: true,
