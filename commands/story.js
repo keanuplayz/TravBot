@@ -4,9 +4,9 @@ const fs = require("fs");
 exports.run = async (client, message, args, level) => {
     const stories = JSON.parse(fs.readFileSync(__dirname + "/storage/stories.json", "utf8"));
     const sender = message.author;
-    if (!stories[sender.id + message.guild.id]) stories[sender.id + message.guild.id] = {};
-    if (!stories[sender.id + message.guild.id].title) stories[sender.id + message.guild.id].title = "";
-    if (!stories[sender.id + message.guild.id].description) stories[sender.id + message.guild.id].description = "";
+    if (!stories[sender.id]) stories[sender.id] = {};
+    if (!stories[sender.id].title) stories[sender.id].title = "";
+    if (!stories[sender.id].description) stories[sender.id].description = "";
 
     if (!args[0]) return message.channel.send("Please specify a story name.");
 
@@ -38,9 +38,9 @@ exports.run = async (client, message, args, level) => {
     }
 
     if (args[0] == "create") {
-        stories[sender.id + message.guild.id].title = args[1];
-        stories[sender.id + message.guild.id].description = args[2];
-        message.channel.send(args[2].join(" "), {
+        stories[sender.id].title = args[1];
+        stories[sender.id].description = args[2];
+        message.channel.send({
             embed: {
                 title: "Story created!",
                 description: `Title: **${args[1]}.**\nDescription: **${args[2]}.**\nYour story has been tied to your user account. Ask a moderator for help from this point on.`,
