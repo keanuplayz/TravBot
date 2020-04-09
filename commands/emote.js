@@ -1,15 +1,19 @@
-module.exports.run = async (client, message, args) => {
+/* eslint-disable no-unused-vars */
+exports.run = async (client, message, args, level) => {
     const emote = client.emojis.find(emote => emote.name === args[0]);
-    if (!emote) return message.channel.send("That's not a valid emote name!")
+    if (!emote) return message.channel.send("That's not a valid emote name!");
     message.delete();
     message.channel.send(`${emote}`);
-}
-
-module.exports.config = {
-    name: "emote",
-    noaliases: "No aliases",
+};
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
     aliases: [],
-    usage: ".emote",
-    description: "Sends the specified emote.",
-    accessibleby: "Members"
-}
+    permLevel: "User"
+};
+exports.help = {
+    name: "emote",
+    category: "Fun",
+    description: "Sends an emote.",
+    usage: "emote [emote name]"
+};
