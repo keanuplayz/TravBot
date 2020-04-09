@@ -38,7 +38,7 @@ client.aliases = new Enmap();
 client.settings = new Enmap({
     name: "settings"
 });
-client.active = new Enmap()
+client.active = new Map()
 const init = async () => {
     const cmdFiles = await readdir("./commands/");
     client.logger.log(`Loading a total of ${cmdFiles.length} commands.`);

@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
     collector.once('collect', function(m) {
       results.delete()
       m.delete()
-      let commandFile = require("./play.js")
+      let commandFile = client.commands.get("play")
       commandFile.run(client, message, [this.videos[parseInt(m.content) - 1].url])
     })
   })
