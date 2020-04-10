@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
-    const channelID = args.join(" ");
-    const channel = client.channels.get(channelID);
+    const channel = message.guild.me.voiceChannelID;
     channel.leave()
         .then(connection => {
             message.channel.send("Successfully disconnected.");
