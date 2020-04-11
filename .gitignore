@@ -61,6 +61,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# Self-added ignores
 .vscode/
 
-commands/storage/UserData.json/
+commands/storage/UserData.json
