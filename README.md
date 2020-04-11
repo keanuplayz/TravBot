@@ -3,15 +3,6 @@
 </p>
 
 <p align="center">
-<a href="https://travis-ci.org/keanuplayz/TravBot">
-<img border="0" alt="Build Status" src="https://travis-ci.org/keanuplayz/TravBot.svg?branch=master">
-</a>
-<a href="https://david-dm.org/keanuplayz/travbot">
-<img border="0" alt="Dependencies" src="https://david-dm.org/keanuplayz/travbot.svg">
-</a>
-<a href="https://travbot.freshstatus.io/">
-<img border="0" alt="FOSSA Status" src="https://img.shields.io/uptimerobot/status/m783958465-5db2ff1c8901e385a85c7b32">
-</a>
 <a href="https://travbot.readthedocs.io/en/latest/?badge=latest">
 <img border="0" alt="Documentation Status" src="https://readthedocs.org/projects/travbot/badge/?version=latest">
 </a>
@@ -22,7 +13,7 @@
 <img border="0" alt="Version" src="https://img.shields.io/github/package-json/v/keanuplayz/travbot">
 </a>
 <a href="https://github.com/keanuplayz/TravBot/blob/master/package.json">
-<img border="0" alt="Node-Opus" src="https://img.shields.io/github/package-json/dependency-version/keanuplayz/travbot/node-opus">
+<img border="0" alt="Node-Opus" src="https://img.shields.io/github/package-json/dependency-version/keanuplayz/travbot/discord.js">
 </a>
 
 </p>

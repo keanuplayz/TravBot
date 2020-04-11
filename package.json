@@ -1,12 +1,12 @@
 {
     "name": "travebot",
-    "version": "2.3.0",
+    "version": "2.4.0",
     "description": "TravBot Discord bot.",
     "main": "index.js",
     "author": "Keanu",
     "dependencies": {
         "better-sqlite3": "^5.4.0",
-        "chalk": "^3.0.0",
+        "chalk": "^4.0.0",
         "discord.js": "11.6.1",
         "discord.js-commando": "^0.10.0",
         "enmap": "^5.0.0",
@@ -15,23 +15,26 @@
         "inquirer": "^7.0.4",
         "isgd": "^1.1.3",
         "js-beautify": "^1.10.3",
+        "mathjs": "6.6.3",
         "minify-json": "^1.0.0",
-        "mathjs": "6.6.1",
         "moment": "^2.24.0",
         "moment-duration-format": "^2.3.2",
         "nekos.life": "^2.0.4",
         "node-cron": "^2.0.3",
         "node-fetch": "^2.6.0",
         "relevant-urban": "^2.0.0",
-        "weather-js": "^2.0.0"
+        "weather-js": "^2.0.0",
+        "yt-search": "^1.1.2",
+        "ytdl-core": "^2.0.1",
+        "ytdl-core-discord": "^1.1.0"
     },
     "scripts": {
         "start": "node index.js",
-        "lint": "jshint index.js",
+        "lint": "eslint ./commands/*.js && eslint ./*.js",
         "test_all": "jshint ./commands/*.js",
         "format": "npm run json-beautify && npm run js-beautify",
-        "js-beautify": "js-beautify -js -q -r -f ./**.js",
-        "json-beautify": "js-beautify -js -r -f ./**.json"
+        "js-beautify": "js-beautify -js -q -r -f ./**.js && js-beautify -js -q -r -f ./commands/**.js",
+        "json-beautify": "js-beautify -js -r -f ./**.json && js-beautify -js -r -f ./commands/storage/**.json"
     },
     "engines": {
         "node": ">=8"

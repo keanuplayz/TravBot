@@ -63,4 +63,4 @@ typings/
 
 .vscode/
 
-commands/storage/UserData.json
+commands/storage/UserData.json/
