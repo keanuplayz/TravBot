@@ -17,5 +17,5 @@ exports.help = {
     name: "desc",
     category: "Utility",
     description: "Renames current voice channel.",
-    usage: "desc [current name] [name]"
+    usage: "desc [name]"
 };
