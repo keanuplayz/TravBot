@@ -5,10 +5,7 @@ const Discord = require("discord.js");
 const Commando = require("discord.js-commando");
 const cron = require("node-cron");
 cron.schedule("0 0 * * *", function() {
-    const Discord = require("discord.js");
-    console.log("Ichiki has been declared a cutie.");
-    client.channels.get("605909799691091980")
-        .send("Ichikutie is a cute Ichikutie. Like, really cute. No escaping Ichikutie.");
+    console.log("tfw empty cronjob");
 });
 const {
     promisify
