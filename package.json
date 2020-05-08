@@ -10,7 +10,7 @@
         "discord.js": "11.6.1",
         "discord.js-commando": "^0.10.0",
         "enmap": "^5.0.0",
-        "eslint": "^6.6.0",
+        "eslint": "^7.0.0",
         "figlet": "^1.2.4",
         "inquirer": "^7.0.4",
         "isgd": "^1.1.3",
