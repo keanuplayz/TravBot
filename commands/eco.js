@@ -94,23 +94,22 @@ exports.run = async (client, message, args, level) => {
             message.channel.send("Too many arguments! `eco pay <amount> <user>`");
         else {
             var amount = Number(args[1]);
-            
+
             if (!amount)
                 message.channel.send(`\`${args[1]}\` isn't a valid amount of money.`);
-            else
-            {
+            else {
                 if (amount > UserData[sender.id + message.guild.id].money)
                     message.channel.send("You don't have enough money for that.");
                 else {
                     var target;
-                    
+
                     if (/<@!\d+>/.test(args[2])) {
-                        target = args[2].substring(3, args[2].length-1);
+                        target = args[2].substring(3, args[2].length - 1);
                     } else {
                         var name = args[2].split('_').join(' ');
                         target = client.users.find(user => user.username == name).id;
                     }
-                    
+
                     if (!target)
                         message.channel.send(`No user found by the name: ${name}`);
                     else {
@@ -118,16 +117,16 @@ exports.run = async (client, message, args, level) => {
                             message.channel.send("You can't send money to yourself!");
                         else {
                             var account = target + message.guild.id;
-                            
+
                             // Initialize target account
                             if (!UserData[account]) UserData[account] = {};
                             if (!UserData[account].money) UserData[account].money = 1;
                             if (!UserData[account].lastDaily) UserData[account].lastDaily = "Not Collected";
                             if (!UserData[account].userid) UserData[account].userid = target;
-                            
+
                             UserData[sender.id + message.guild.id].money -= amount;
                             UserData[account].money += amount;
-                            
+
                             message.channel.send(`<@${sender.id}> has sent ${amount} money to <@${target}>!`);
                         }
                     }
