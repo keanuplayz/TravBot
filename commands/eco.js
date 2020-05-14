@@ -154,7 +154,7 @@ exports.run = async (client, message, args, level) => {
                 message.channel.send("Not enough Mons!");
             } else {
                 UserData[sender.id + message.guild.id].money -= amount;
-                message.channel.send(`Transaction of ${amount} Mon completed successfully. <@394808963356688394>`);
+                message.channel.send(`Transaction of ${amount} Mons completed successfully. <@394808963356688394>`);
             }
         }
         if (args[1] == "cute") {
