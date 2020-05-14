@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
 exports.run = async (client, message, args, level) => {
-    if (message.guild.id != "644875385452101633") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
+    if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
     const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
     const sender = message.author;
     if (!UserData[sender.id + message.guild.id]) UserData[sender.id + message.guild.id] = {};
