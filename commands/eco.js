@@ -163,7 +163,7 @@ exports.run = async (client, message, args, level) => {
                 message.channel.send("Not enough Mons!");
             } else {
                 UserData[sender.id + message.guild.id].money -= amount;
-                message.channel.send(":MoniCheeseBlushRed:");
+                message.channel.send("<:MoniCheeseBlushRed:637513137083383826>");
             }
         }
     }
