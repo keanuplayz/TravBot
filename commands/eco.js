@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
 exports.run = async (client, message, args, level) => {
+    if (message.guild.id != "644875385452101633") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
     const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
     const sender = message.author;
     if (!UserData[sender.id + message.guild.id]) UserData[sender.id + message.guild.id] = {};
@@ -96,17 +97,17 @@ exports.run = async (client, message, args, level) => {
             var amount = Number(args[1]);
 
             if (!amount)
-                message.channel.send(`\`${args[1]}\` isn't a valid amount of money.`);
+                message.channel.send(`\`${args[1]}\` isn't a valid amount of Mons.`);
             else {
                 if (amount > UserData[sender.id + message.guild.id].money)
-                    message.channel.send("You don't have enough money for that.");
+                    message.channel.send("You don't have enough Mons for that.");
                 else {
                     var target;
 
                     if (/<@!\d+>/.test(args[2])) {
                         target = args[2].substring(3, args[2].length - 1);
                     } else {
-                        var name = args[2].split('_').join(' ');
+                        var name = args[2].split("_").join(" ");
                         target = client.users.find(user => user.username == name).id;
                     }
 
@@ -114,7 +115,7 @@ exports.run = async (client, message, args, level) => {
                         message.channel.send(`No user found by the name: ${name}`);
                     else {
                         if (sender.id === target)
-                            message.channel.send("You can't send money to yourself!");
+                            message.channel.send("You can't send Mons to yourself!");
                         else {
                             var account = target + message.guild.id;
 
@@ -126,13 +127,55 @@ exports.run = async (client, message, args, level) => {
 
                             UserData[sender.id + message.guild.id].money -= amount;
                             UserData[account].money += amount;
-
-                            message.channel.send(`<@${sender.id}> has sent ${amount} money to <@${target}>!`);
+                            if (amount > 1) {
+                                message.channel.send(`<@${sender.id}> has sent ${amount} Mons to <@${target}>!`);
+                            } else {
+                                message.channel.send(`<@${sender.id}> has sent ${amount} Mon to <@${target}>!`);
+                            }
                         }
                     }
                 }
             }
         }
+    }
+    if (args[0] == "buy") {
+        if (args[1] == "hug") {
+            const amount = 1;
+            if (amount > UserData[sender.id + message.guild.id].money) {
+                message.channel.send("Not enough Mons!");
+            } else {
+                UserData[sender.id + message.guild.id].money -= amount;
+                message.channel.send(`Transaction of ${amount} Mon completed successfully. <@394808963356688394>`);
+            }
+        }
+        if (args[1] == "handhold") {
+            const amount = 2;
+            if (amount > UserData[sender.id + message.guild.id].money) {
+                message.channel.send("Not enough Mons!");
+            } else {
+                UserData[sender.id + message.guild.id].money -= amount;
+                message.channel.send(`Transaction of ${amount} Mon completed successfully. <@394808963356688394>`);
+            }
+        }
+        if (args[1] == "cute") {
+            const amount = 1;
+            if (amount > UserData[sender.id + message.guild.id].money) {
+                message.channel.send("Not enough Mons!");
+            } else {
+                UserData[sender.id + message.guild.id].money -= amount;
+                message.channel.send(":MoniCheeseBlushRed:");
+            }
+        }
+    }
+    if (args[0] == "shop") {
+        const embed = new Discord.RichEmbed()
+            .setColor(0xf1c40f)
+            .setTitle("Shop")
+            .addField("**Hug** (.eco buy hug)", "Hug Monika. Costs 1 Mon.")
+            .addField("**Handholding** (.eco buy handhold)", "Hold Monika's hand. Costs 2 Mons.")
+            .addField("**Cute** (.eco buy cute)", "Calls Monika cute. Costs 1 Mon.")
+            .setFooter("Mon Shop | TravBot Services");
+        message.channel.send(embed);
     }
     fs.writeFile(__dirname + "/storage/UserData.json", JSON.stringify(UserData), err => {
         if (err) console.log(err);
