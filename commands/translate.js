@@ -3,7 +3,9 @@ const translate = require("translate-google");
 exports.run = async (client, message, args, level) => {
     const lang = args[0];
     const input = args.slice(1).join(" ");
-    translate(input, {to: lang}).then(res => {
+    translate(input, {
+        to: lang
+    }).then(res => {
         message.channel.send({
             embed: {
                 title: "Translation",
