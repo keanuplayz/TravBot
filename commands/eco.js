@@ -129,7 +129,7 @@ exports.run = async (client, message, args, level) => {
                             if (!UserData[account]) UserData[account] = {};
                             if (!UserData[account].money) UserData[account].money = 1;
                             if (!UserData[account].lastDaily) UserData[account].lastDaily = "Not Collected";
-                            if (!UserData[account].userid) UserData[account].userid = target; console.log(target);
+                            if (!UserData[account].userid) UserData[account].userid = target;
 
                             UserData[sender.id + message.guild.id].money -= amount;
                             UserData[account].money += amount;
