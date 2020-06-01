@@ -103,7 +103,7 @@ exports.run = async (client, message, args, level) => {
 
                 if (amount > UserData[sender.id + message.guild.id].money)
                     message.channel.send("You don't have enough Mons for that.");
-				else if (amount <= 0)
+                else if (amount <= 0)
                     message.channel.send("You must send at least one Mon!");
                 else {
                     var target;
