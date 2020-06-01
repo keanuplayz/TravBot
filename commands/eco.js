@@ -96,15 +96,21 @@ exports.run = async (client, message, args, level) => {
         else {
             var amount = Number(args[1]);
 
-            if (!amount)
+            if (!amount && amount !== 0)
                 message.channel.send(`\`${args[1]}\` isn't a valid amount of Mons.`);
             else {
+                amount = Math.floor(amount);
+
                 if (amount > UserData[sender.id + message.guild.id].money)
                     message.channel.send("You don't have enough Mons for that.");
+				else if (amount <= 0)
+                    message.channel.send("You must send at least one Mon!");
                 else {
                     var target;
 
-                    if (/<@!\d+>/.test(args[2])) {
+                    if (/<@\d+>/.test(args[2])) {
+                        target = args[2].substring(2, args[2].length - 1);
+                    } else if (/<@!\d+>/.test(args[2])) {
                         target = args[2].substring(3, args[2].length - 1);
                     } else {
                         var name = args[2].split("_").join(" ");
