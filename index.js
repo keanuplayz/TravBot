@@ -36,6 +36,34 @@ client.settings = new Enmap({
     name: "settings"
 });
 client.active = new Map();
+
+// Message logger.
+client.on("message", function(message) {
+    const embedChannel = client.channels.get("719597009195237516");
+    if (message.channel.id === "719597009195237516") {
+        return;
+    } else if (message.channel.id === "651132674496266250" || message.channel.id === "651132744298135552") {
+        client.logger.log(`Message is created -> "${message}" in channel ${message.channel.name} on guild "${message.channel.guild.name}"`, "log");
+        const embed = new Discord.RichEmbed()
+            .setAuthor("Message Log", message.guild.iconURL)
+            .setTitle(`Message in ${message.channel.guild.name}`)
+            .setDescription(`Guild: ${message.channel.guild.name}\nChannel: ${message.channel.name}\nMessage: ${message}\n\nMessage link: ${message.url}`)
+            .setColor(0x9e3a33)
+            .setFooter("TravBot Message Log");
+            embedChannel.send("<@465662909645848577> <@717352467280691331>", embed);
+    }
+    else {
+        client.logger.log(`Message is created -> "${message}" in channel ${message.channel.name} on guild "${message.channel.guild.name}"`, "log");
+        const embed = new Discord.RichEmbed()
+            .setAuthor("Message Log", message.guild.iconURL)
+            .setTitle(`Message in ${message.channel.guild.name}`)
+            .setDescription(`Guild: ${message.channel.guild.name}\nChannel: ${message.channel.name}\nMessage: ${message}\n\nMessage link: ${message.url}`)
+            .setColor(0x9e3a33)
+            .setFooter("TravBot Message Log");
+        embedChannel.send(embed);
+    }
+});
+
 const init = async () => {
     const cmdFiles = await readdir("./commands/");
     client.logger.log(`Loading a total of ${cmdFiles.length} commands.`);
