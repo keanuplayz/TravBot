@@ -3,7 +3,7 @@ const Enmap = require("enmap");
 const fs = require("fs");
 let baseConfig = fs.readFileSync("./config_base.txt", "utf8");
 const defaultSettings = {
-    prefix: ".",
+    prefix: "~",
     modLogChannel: "mod-log",
     modRole: "Moderator",
     adminRole: "Administrator",
