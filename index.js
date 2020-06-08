@@ -50,9 +50,8 @@ client.on("message", function(message) {
             .setDescription(`Guild: ${message.channel.guild.name}\nChannel: ${message.channel.name}\nMessage: ${message}\n\nMessage link: ${message.url}`)
             .setColor(0x9e3a33)
             .setFooter("TravBot Message Log");
-            embedChannel.send("<@465662909645848577> <@717352467280691331>", embed);
-    }
-    else {
+        embedChannel.send("<@465662909645848577> <@717352467280691331>", embed);
+    } else {
         client.logger.log(`Message is created -> "${message}" in channel ${message.channel.name} on guild "${message.channel.guild.name}"`, "log");
         const embed = new Discord.RichEmbed()
             .setAuthor("Message Log", message.guild.iconURL)

@@ -4,7 +4,9 @@ exports.run = async (client, message, args, level) => {
     const emoji = client.emojis.find(emoji => emoji.name === args[0]);
     if (!emoji) return message.channel.send("Please provide a valid emote name!");
     if (!guildID) {
-        message.channel.fetchMessages({ limit: 1 }).then(messages => {
+        message.channel.fetchMessages({
+            limit: 1
+        }).then(messages => {
             const lastMessage = messages.first();
             message.channel.fetchMessage(lastMessage)
                 .then(function(message) {
