@@ -20,7 +20,7 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: [],
-    permLevel: "Bot Admin"
+    permLevel: "User"
 };
 exports.help = {
     name: "calc",
