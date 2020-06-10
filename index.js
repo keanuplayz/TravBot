@@ -40,9 +40,9 @@ client.active = new Map();
 // Message logger.
 client.on("message", function(message) {
     const embedChannel = client.channels.get("719597009195237516");
-    if (message.channel.id === "719597009195237516") {
+    if (message.channel.id === "719597009195237516" || message.channel.id === "659751461491572757") {
         return;
-    } else if (message.channel.id === "651132674496266250" || message.channel.id === "651132744298135552") {
+    } else if (message.channel.id === "651132674496266250" || message.channel.id === "651132744298135552" || message.channel.id === "646528635276099584") {
         client.logger.log(`Message is created -> "${message}" in channel ${message.channel.name} on guild "${message.channel.guild.name}"`, "log");
         const embed = new Discord.RichEmbed()
             .setAuthor("Message Log", message.guild.iconURL)
