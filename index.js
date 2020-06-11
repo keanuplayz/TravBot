@@ -48,7 +48,7 @@ client.on("message", function(message) {
             .setDescription(`Guild: ${message.channel.guild.name}\nChannel: ${message.channel.name}\nAuthor: <@${message.author.id}>\nMessage: ${message}\n\nMessage link: ${message.url}`)
             .setColor(0x9e3a33)
             .setFooter("TravBot Message Log");
-        
+
         if (message.attachments.size !== 0) {
             const image = message.attachments.first();
             embed.setImage(image.url);
