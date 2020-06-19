@@ -4,83 +4,83 @@ exports.run = async (client, message, args, level) => {
     let statsWithoutBots = {};
     let allTextChannelsInCurrentGuild = message.guild.channels.filter(channel => channel.type === "text");
     let channelsSearched = 0;
-    
+
     allTextChannelsInCurrentGuild.forEach(async channel => {
         // This will count all reactions in text and reactions per channel.
         let selected = channel.lastMessageID;
         let continueLoop = true;
-        
+
         while (continueLoop) {
             let messages = await channel.fetchMessages({
                 limit: 100,
                 before: selected
             });
-            
+
             if (messages.size <= 0) {
                 continueLoop = false;
                 channelsSearched++;
-                
+
                 // Display stats on emote usage.
                 if (channelsSearched >= allTextChannelsInCurrentGuild.size) {
                     // Depending on how many emotes you have, you might have to break up the analytics into multiple messages.
                     let lines = [];
                     let line = "";
-                    
+
                     for (let emote in stats) {
                         let emoteObject = message.guild.emojis.get(emote);
-                        
+
                         // Emotes not within the current guild (or deleted ones) will return null. Select only those from the current guild.
                         if (emoteObject != null) {
                             let stat = emoteObject.toString() + " x " + stats[emote] + " (" + (statsWithoutBots[emote] || 0) + " without bots)\n";
-                            
+
                             if (line.length + stat.length > 1900) {
                                 lines.push(line);
                                 line = "";
                             }
-                            
+
                             line += stat;
                         }
                     }
-                    
-                    if(line.length > 0) lines.push(line); // You can't send empty messages or there'll be an error.
-                    for(let ln of lines) await message.channel.send(ln);
+
+                    if (line.length > 0) lines.push(line); // You can't send empty messages or there'll be an error.
+                    for (let ln of lines) await message.channel.send(ln);
                 }
             } else {
                 messages.forEach(msg => {
                     let msgEmotes = msg.content.match(/<:.+?:\d+?>/g) || [];
                     let reactionEmotes = msg.reactions.keyArray();
-                    
+
                     for (let emote of msgEmotes) {
                         let emoteID = emote.match(/\d+/g)[0];
-                        
+
                         if (!(emoteID in stats)) stats[emoteID] = 0;
                         stats[emoteID]++;
-                        
+
                         if (!msg.author.bot) {
                             if (!(emoteID in statsWithoutBots)) statsWithoutBots[emoteID] = 0;
                             statsWithoutBots[emoteID]++;
                         }
                     }
-                    
+
                     for (let emoteTag of reactionEmotes) {
                         let emoteTagIndex = emoteTag.indexOf(":");
-                        let emoteID = emoteTagIndex !== -1 ? emoteTag.substring(emoteTagIndex+1) : emoteTag; // In Discord.js v11, the keys are "<emote name>:<emote ID>" instead.
-                        
+                        let emoteID = emoteTagIndex !== -1 ? emoteTag.substring(emoteTagIndex + 1) : emoteTag; // In Discord.js v11, the keys are "<emote name>:<emote ID>" instead.
+
                         // Exclude any unicode emote.
                         if (msg.reactions.get(emoteTag).emoji.id != null) {
                             if (!(emoteID in stats)) stats[emoteID] = 0;
                             stats[emoteID] += msg.reactions.get(emoteTag).count;
-                            
+
                             if (!(emoteID in statsWithoutBots)) statsWithoutBots[emoteID] = 0;
                             statsWithoutBots[emoteID] += msg.reactions.get(emoteTag).count;
-                            
+
                             // I don't know why this collection always appears as empty.
                             msg.reactions.get(emoteTag).users.forEach(user => {
                                 if (user.bot) statsWithoutBots[emoteID]--;
                             });
                         }
                     }
-                    
+
                     selected = msg.id;
                 });
             }
