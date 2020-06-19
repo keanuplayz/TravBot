@@ -13,7 +13,7 @@ exports.run = async (client, message, args, level) => {
         .addField("**Role Count:**", `${message.guild.roles.size}`, true)
         .setFooter("Travbot Services", client.user.displayAvatarURL);
     message.channel.send({
-        sEmbed
+        embed: sEmbed
     });
 };
 exports.conf = {
