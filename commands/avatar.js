@@ -19,6 +19,7 @@ exports.run = async (client, message, args, level) => {
         let name = args.join(" ");
         let user = client.users.find(user => user.username.includes(name));
         if (user) message.reply(user.avatarURL);
+        else message.reply(`No user found by the name \`${name}\`!`);
     }
     // avatar (no arguments)
     else {
