@@ -3,9 +3,19 @@ exports.run = async (client, message, args, level) => {
     let stats = {};
     let statsWithoutBots = {};
     let allTextChannelsInCurrentGuild = message.guild.channels.filter(channel => channel.type === "text");
+    let limit = allTextChannelsInCurrentGuild.size;
     let channelsSearched = 0;
 
     allTextChannelsInCurrentGuild.forEach(async channel => {
+        // IMPORTANT: You MUST check if the bot actually has access to the channel in the first place. It will get the list of all channels, but that doesn't mean it has access to every channel. Without this, it'll require admin access and throw an annoying unhelpful DiscordAPIError: Missing Access otherwise.
+        const permissions = channel.permissionsFor(client.user);
+        const isViewable = permissions && permissions.has("VIEW_CHANNEL", false);
+        
+        if (!isViewable) {
+            limit--;
+            return;
+        }
+        
         // This will count all reactions in text and reactions per channel.
         let selected = channel.lastMessageID;
         let continueLoop = true;
@@ -21,7 +31,7 @@ exports.run = async (client, message, args, level) => {
                 channelsSearched++;
 
                 // Display stats on emote usage.
-                if (channelsSearched >= allTextChannelsInCurrentGuild.size) {
+                if (channelsSearched >= limit) {
                     // Depending on how many emotes you have, you might have to break up the analytics into multiple messages.
                     let lines = [];
                     let line = "";
