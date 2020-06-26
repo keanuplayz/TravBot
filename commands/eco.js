@@ -178,31 +178,6 @@ exports.run = async (client, message, args, level) => {
                 message.channel.send("<:MoniCheeseBlushRed:637513137083383826>");
             }
         }
-        else if (args[1] == "obliterate") {
-            const amount = 15;
-            if (amount > UserData[compositeID].money) {
-                message.channel.send("Not enough Mons!");
-            } else if (!args[2] || !/<@.?\d+>/g.test(args[2])) {
-                message.channel.send("You need to ping a user to activate this command!");
-            } else {
-                // It's better to use async functions here because it'll work with the data writing at the end.
-                const user = await client.fetchUser(args[2].match(/\d+/g)[0]);
-
-                if (user.bot) {
-                    message.channel.send("no u");
-                } else {
-                    UserData[compositeID].money -= amount;
-                    const target = user.id + message.guild.id;
-                    if (!UserData[target]) UserData[target] = {};
-                    UserData[target].obliterated = Date.now();
-                    await message.channel.send(obliterate[Math.floor(Math.random() * obliterate.length)].replace(/%%%/g, user.toString()), {
-                        files: [{
-                            attachment: "assets/TheUltimateLaser.gif"
-                        }]
-                    });
-                }
-            }
-        }
         else {
             message.channel.send(`There's no item in the shop that goes by \`${args[1]}\`!`);
         }
@@ -214,7 +189,6 @@ exports.run = async (client, message, args, level) => {
             .addField("**Hug** (.eco buy hug)", "Hug Monika. Costs 1 Mon.")
             .addField("**Handholding** (.eco buy handhold)", "Hold Monika's hand. Costs 2 Mons.")
             .addField("**Cute** (.eco buy cute)", "Calls Monika cute. Costs 1 Mon.")
-            .addField("**Obliterate** (.eco buy obliterate @user)", "Call upon the demons of Selzar to blast a person of your choice with a laser so powerful that it prevents them from using TravBot for 2 entire days. Costs 15 Mons.")
             .setFooter("Mon Shop | TravBot Services");
         message.channel.send(embed);
     }

@@ -1,31 +1,6 @@
 const Discord = require("discord.js");
-const moment = require("moment");
-const fs = require("fs");
 module.exports = client => {
    client.permlevel = message => {
-      // Check if the user has been obliterated and hasn't recovered yet.
-      const UserData = JSON.parse(fs.readFileSync("commands/storage/UserData.json", "utf-8"));
-      const compositeID = message.author.id + message.guild.id;
-      if (!UserData[compositeID]) UserData[compositeID] = {};
-      if (UserData[compositeID].obliterated) {
-         const cooldown = 172800000; // 2 days
-         const obliteratedTimestamp = UserData[compositeID].obliterated;
-         const now = Date.now();
-         const difference = now - obliteratedTimestamp;
-
-         // If the user is still obliterated, return -1, otherwise return their normal permission level.
-         if (difference < cooldown) {
-            const howLong = moment(now).to(obliteratedTimestamp + cooldown);
-            message.channel.send(`Being obliterated prevents you from using TravBot in this server for 2 days. You'll be able to use TravBot again in ${howLong}.`);
-            return -1;
-         } else {
-            delete UserData[compositeID].obliterated;
-            fs.writeFileSync("commands/storage/UserData.json", JSON.stringify(UserData), err => {
-               if (err) console.log(err);
-            });
-         }
-      }
-
       let permlvl = 0;
       const permOrder = client.config.permLevels.slice(0)
          .sort(

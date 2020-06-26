@@ -13,13 +13,6 @@ const config = {
 
   // PERMISSION LEVEL DEFINITIONS.
   permLevels: [
-    // There's one special permission level below users, which is when the selected user has been obliterated via the eco command. This prevents them from using TravBot for 2 days.
-    { level: -1,
-      name: "Obliterated",
-      // As with below, being obliterated will prevent the user from using any command, so just return false.
-      check: () => false
-    },
-
     // This is the lowest permisison level, this is for non-roled users.
     { level: 0,
       name: "User", 
