@@ -9,7 +9,7 @@ const obliterate = [
     "And thus, it was foretold that %%% shall be obliterated!"
 ];
 exports.run = async (client, message, args, level) => {
-    //if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
+    if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
     const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
     const sender = message.author;
     const compositeID = sender.id + message.guild.id;
@@ -195,7 +195,6 @@ exports.run = async (client, message, args, level) => {
                     const target = user.id + message.guild.id;
                     if (!UserData[target]) UserData[target] = {};
                     UserData[target].obliterated = Date.now();
-
                     await message.channel.send(obliterate[Math.floor(Math.random() * obliterate.length)].replace(/%%%/g, user.toString()), {
                         files: [{
                             attachment: "assets/TheUltimateLaser.gif"

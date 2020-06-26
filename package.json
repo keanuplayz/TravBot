@@ -1,6 +1,6 @@
 {
     "name": "travebot",
-    "version": "2.6.1",
+    "version": "2.7.0",
     "description": "TravBot Discord bot.",
     "main": "index.js",
     "author": "Keanu",
