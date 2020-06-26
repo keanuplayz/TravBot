@@ -1,5 +1,31 @@
+const Discord = require("discord.js");
+const moment = require("moment");
+const fs = require("fs");
 module.exports = client => {
    client.permlevel = message => {
+      // Check if the user has been obliterated and hasn't recovered yet.
+      const UserData = JSON.parse(fs.readFileSync("commands/storage/UserData.json", "utf-8"));
+      const compositeID = message.author.id + message.guild.id;
+      if (!UserData[compositeID]) UserData[compositeID] = {};
+      if (UserData[compositeID].obliterated) {
+         const cooldown = 172800000; // 2 days
+         const obliteratedTimestamp = UserData[compositeID].obliterated;
+         const now = Date.now();
+         const difference = now - obliteratedTimestamp;
+
+         // If the user is still obliterated, return -1, otherwise return their normal permission level.
+         if (difference < cooldown) {
+            const howLong = moment(now).to(obliteratedTimestamp + cooldown);
+            message.channel.send(`Being obliterated prevents you from using TravBot in this server for 2 days. You'll be able to use TravBot again in ${howLong}.`);
+            return -1;
+         } else {
+            delete UserData[compositeID].obliterated;
+            fs.writeFileSync("commands/storage/UserData.json", JSON.stringify(UserData), err => {
+               if (err) console.log(err);
+            });
+         }
+      }
+
       let permlvl = 0;
       const permOrder = client.config.permLevels.slice(0)
          .sort(
@@ -95,6 +121,49 @@ module.exports = client => {
       }
       return false;
    };
+   client.pages = (message, pages) => {
+      let page = 1;
+      const embed = new Discord.RichEmbed()
+         .setColor(0xffffff)
+         .setFooter(`Page ${page} of ${pages.length}.`)
+         .setDescription(pages[page - 1]);
+
+      message.channel.send(embed).then(msg => {
+         msg.react("⬅").then(r => {
+            msg.react("➡");
+
+            const backwardsFilter = (reaction, user) => reaction.emoji.name == "⬅" && user.id === message.author.id;
+            const forwardsFilter = (reaction, user) => reaction.emoji.name == "➡" && user.id === message.author.id;
+
+            const backwards = msg.createReactionCollector(backwardsFilter, {
+               time: 60000
+            });
+            const forwards = msg.createReactionCollector(forwardsFilter, {
+               time: 60000
+            });
+
+            backwards.on("collect", r => {
+               if (page === 1) return;
+               page--;
+               msg.reactions.find(reaction => reaction.emoji.name == "⬅")
+                  .remove(message.author);
+               embed.setDescription(pages[page - 1]);
+               embed.setFooter(`Page ${page} of ${pages.length}.`);
+               msg.edit(embed);
+            });
+
+            forwards.on("collect", r => {
+               if (page === pages.length) return;
+               page++;
+               msg.reactions.find(reaction => reaction.emoji.name == "➡")
+                  .remove(message.author);
+               embed.setDescription(pages[page - 1]);
+               embed.setFooter(`Page ${page} of ${pages.length}.`);
+               msg.edit(embed);
+            });
+         });
+      });
+   }
    Object.defineProperty(String.prototype, "toProperCase", {
       value: function () {
          return this.replace(/([^\W_]+[^\s-]*) */g, txt => txt.charAt(0)
