@@ -2,11 +2,17 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
-const obliterate = [
-    "Surprise %%%! KABOOOOOOOOOOM!!!",
-    "%%% has lost their ability to even.",
-    "お前はもう死んでいる､ %%%！",
-    "And thus, it was foretold that %%% shall be obliterated!"
+const laser = [
+    "It's technically a laser bridge. No refunds.",
+    "You want a laser bridge? You got one!",
+    "Now what'd they say about building bridges... Oh wait, looks like I nuked the planet again. Whoops!",
+    "I saw this redhead the other day who was so excited to buy what I was selling. Needless to say, she was not very happy with me afterward.",
+    "Sorry, but you'll have to wait until the Laser Bridge Builder leaves early access.",
+    "Thank you for your purchase! For you see, this is the legendary laser of obliteration that has been defended and preserved for countless generations!",
+    "They say that a certain troll dwells under this laser bridge, waiting for an unlucky person to fall for th- I mean- Thank you for your purchase!",
+    "Buy?! Hah! How about our new rental service for just under $9.99 a month? But wait, there's more! For just $99.99, you can rent this laser bridge for an entire year and save 16.67% as opposed to renting it monthly!",
+    "Good choice. Owning a laser bridge is the penultimate experience that all true players strive for!",
+    "I can already imagine the reviews...\n\"9/10 needs more lasers\""
 ];
 exports.run = async (client, message, args, level) => {
     if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
@@ -178,6 +184,19 @@ exports.run = async (client, message, args, level) => {
                 message.channel.send("<:MoniCheeseBlushRed:637513137083383826>");
             }
         }
+        else if (args.slice(1).join(" ").includes("laser bridge")) {
+            const amount = 3;
+            if (amount > UserData[compositeID].money) {
+                message.channel.send("Not enough Mons!");
+            } else {
+                UserData[compositeID].money -= amount;
+                message.channel.send(laser[Math.floor(Math.random() * laser.length)], {
+                    files: [{
+                        attachment: "assets/TheUltimateLaser.gif"
+                    }]
+                });
+            }
+        }
         else {
             message.channel.send(`There's no item in the shop that goes by \`${args[1]}\`!`);
         }
@@ -189,6 +208,7 @@ exports.run = async (client, message, args, level) => {
             .addField("**Hug** (.eco buy hug)", "Hug Monika. Costs 1 Mon.")
             .addField("**Handholding** (.eco buy handhold)", "Hold Monika's hand. Costs 2 Mons.")
             .addField("**Cute** (.eco buy cute)", "Calls Monika cute. Costs 1 Mon.")
+            .addField("**Laser Bridge** (.eco buy laser bridge)", "Buys a laser bridge. Costs 3 Mons.")
             .setFooter("Mon Shop | TravBot Services");
         message.channel.send(embed);
     }
