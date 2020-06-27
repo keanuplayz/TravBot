@@ -208,7 +208,7 @@ exports.run = async (client, message, args, level) => {
             .addField("**Hug** (.eco buy hug)", "Hug Monika. Costs 1 Mon.")
             .addField("**Handholding** (.eco buy handhold)", "Hold Monika's hand. Costs 2 Mons.")
             .addField("**Cute** (.eco buy cute)", "Calls Monika cute. Costs 1 Mon.")
-            .addField("**Laser Bridge** (.eco buy laser bridge)", "Buys a laser bridge. Costs 3 Mons.")
+            .addField("**Laser Bridge** (.eco buy laser bridge)", "Buys what is technically a laser bridge. Costs 3 Mons.")
             .setFooter("Mon Shop | TravBot Services");
         message.channel.send(embed);
     }
