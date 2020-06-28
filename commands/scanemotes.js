@@ -113,7 +113,7 @@ exports.run = async (client, message, args, level) => {
                                         continueReactionLoop = false;
 
                                         if (reaction.count !== userReactions + botReactions) {
-                                            console.warn(`A reaction count of ${reaction.count} was expected, but was given ${userReactions} user reactions and ${botReactions} bot reactions making for ${userReactions + botReactions} total reactions.`);
+                                            console.warn(`[Channel: ${channel.id}, Message: ${msg.id}] A reaction count of ${reaction.count} was expected but was given ${userReactions} user reactions and ${botReactions} bot reactions.`);
                                             warnings++;
                                         }
                                     }
@@ -131,19 +131,18 @@ exports.run = async (client, message, args, level) => {
             }
         }
     } catch (error) {
-        message.channel.send(`\`\`\`${error}\`\`\``);
+        message.channel.send(`Warning: The stats below may be incomplete because the process terminated unexpectedly.\`\`\`${error}\`\`\``);
     }
 
     // Mark the operation as ended.
     const finishTime = Date.now();
     clearInterval(interval);
-    statusMessage.edit(`Finished operation in ${moment.duration(finishTime - startTime).humanize()} with ${warnings} warnings.`);
+    statusMessage.edit(`Finished operation in ${moment.duration(finishTime - startTime).humanize()} with ${warnings} inconsistencies(s).`);
     message.channel.stopTyping();
 
     // Display stats on emote usage.
     // This can work outside the loop now that it's synchronous, and now it's clearer what code is meant to execute at the end.
     // Depending on how many emotes you have, you might have to break up the analytics into multiple messages.
-    // tmp: `#${} ${} x ${} - ${}% (Bots: ${})`
     let sortedEmoteIDs = Object.keys(stats).sort((a, b) => stats[b].users - stats[a].users);
     let lines = [];
     let line = "";
@@ -152,7 +151,7 @@ exports.run = async (client, message, args, level) => {
     // It's better to send all the lines at once rather than paginate the data because it's quite a memory-intensive task to search all the messages in a server for it, and I wouldn't want to activate the command again just to get to another page.
     for (const emoteID of sortedEmoteIDs) {
         const emote = stats[emoteID];
-        let append = `\`#${rank++}\` ${emote.formatted} x ${emote.users} - ${(emote.users / totalUserEmoteUsage * 100).toFixed(3)}%`;
+        let append = `\`#${rank++}\` ${emote.formatted} x ${emote.users} - ${((emote.users / totalUserEmoteUsage * 100) || 0).toFixed(3)}%`;
         if (emote.bots > 0) append += ` (Bots: ${emote.bots})`;
         append += "\n";
         
