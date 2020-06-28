@@ -67,8 +67,7 @@ exports.run = async (client, message, args, level) => {
                 }
             });
         }
-    }
-    else if (args[0] == "guild") {
+    } else if (args[0] == "guild") {
         var guildMoney = 0; // Total amount of Mons in guild.
         var guildUsers = 0;
         var guildRichest = ""; // Richest user in guild.
@@ -101,8 +100,7 @@ exports.run = async (client, message, args, level) => {
                 }]
             }
         });
-    }
-    else if (args[0] == "pay") {
+    } else if (args[0] == "pay") {
         if (!args[1] || !args[2])
             message.channel.send("eco pay <amount> <user> -- Use underscores for spaces (or ping the user alternatively).");
         else if (args.length > 3)
@@ -155,8 +153,7 @@ exports.run = async (client, message, args, level) => {
                 }
             }
         }
-    }
-    else if (args[0] == "buy") {
+    } else if (args[0] == "buy") {
         if (args[1] == "hug") {
             const amount = 1;
             if (amount > UserData[compositeID].money) {
@@ -165,8 +162,7 @@ exports.run = async (client, message, args, level) => {
                 UserData[compositeID].money -= amount;
                 message.channel.send(`Transaction of ${amount} Mon completed successfully. <@394808963356688394>`);
             }
-        }
-        else if (args[1] == "handhold") {
+        } else if (args[1] == "handhold") {
             const amount = 2;
             if (amount > UserData[compositeID].money) {
                 message.channel.send("Not enough Mons!");
@@ -174,8 +170,7 @@ exports.run = async (client, message, args, level) => {
                 UserData[compositeID].money -= amount;
                 message.channel.send(`Transaction of ${amount} Mons completed successfully. <@394808963356688394>`);
             }
-        }
-        else if (args[1] == "cute") {
+        } else if (args[1] == "cute") {
             const amount = 1;
             if (amount > UserData[compositeID].money) {
                 message.channel.send("Not enough Mons!");
@@ -183,8 +178,7 @@ exports.run = async (client, message, args, level) => {
                 UserData[compositeID].money -= amount;
                 message.channel.send("<:MoniCheeseBlushRed:637513137083383826>");
             }
-        }
-        else if (args.slice(1).join(" ").includes("laser bridge")) {
+        } else if (args.slice(1).join(" ").includes("laser bridge")) {
             const amount = 3;
             if (amount > UserData[compositeID].money) {
                 message.channel.send("Not enough Mons!");
@@ -196,12 +190,10 @@ exports.run = async (client, message, args, level) => {
                     }]
                 });
             }
-        }
-        else {
+        } else {
             message.channel.send(`There's no item in the shop that goes by \`${args[1]}\`!`);
         }
-    }
-    else if (args[0] == "shop") {
+    } else if (args[0] == "shop") {
         const embed = new Discord.RichEmbed()
             .setColor(0xf1c40f)
             .setTitle("Shop")
