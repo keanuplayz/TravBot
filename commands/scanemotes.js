@@ -113,7 +113,7 @@ exports.run = async (client, message, args, level) => {
                                         continueReactionLoop = false;
 
                                         if (reaction.count !== userReactions + botReactions) {
-                                            console.warn(`[Channel: ${channel.id}, Message: ${msg.id}] A reaction count of ${reaction.count} was expected but was given ${userReactions} user reactions and ${botReactions} bot reactions.`);
+                                            client.logger.warn(`[Channel: ${channel.id}, Message: ${msg.id}] A reaction count of ${reaction.count} was expected but was given ${userReactions} user reactions and ${botReactions} bot reactions.`);
                                             warnings++;
                                         }
                                     }
