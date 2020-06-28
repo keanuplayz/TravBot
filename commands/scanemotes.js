@@ -13,6 +13,8 @@ exports.run = async (client, message, args, level) => {
     if (difference < cooldown) {
         message.channel.send(`This command requires a day to cooldown. You'll be able to activate this command ${howLong}.`);
         return;
+    } else {
+        client.scanemotesCooldown[message.guild.id] = startTime;
     }
 
     const stats = {};
@@ -132,9 +134,8 @@ exports.run = async (client, message, args, level) => {
         message.channel.send(`\`\`\`${error}\`\`\``);
     }
 
-    // Mark the operation as ended, set cooldown, etc.
+    // Mark the operation as ended.
     const finishTime = Date.now();
-    client.scanemotesCooldown[message.guild.id] = finishTime;
     clearInterval(interval);
     statusMessage.edit(`Finished operation in ${moment.duration(finishTime - startTime).humanize()} with ${warnings} warnings.`);
     message.channel.stopTyping();
