@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 module.exports = client => {
    client.permlevel = message => {
       let permlvl = 0;
@@ -95,6 +96,49 @@ module.exports = client => {
       }
       return false;
    };
+   client.pages = (message, pages) => {
+      let page = 1;
+      const embed = new Discord.RichEmbed()
+         .setColor(0xffffff)
+         .setFooter(`Page ${page} of ${pages.length}.`)
+         .setDescription(pages[page - 1]);
+
+      message.channel.send(embed).then(msg => {
+         msg.react("⬅").then(r => {
+            msg.react("➡");
+
+            const backwardsFilter = (reaction, user) => reaction.emoji.name == "⬅" && user.id === message.author.id;
+            const forwardsFilter = (reaction, user) => reaction.emoji.name == "➡" && user.id === message.author.id;
+
+            const backwards = msg.createReactionCollector(backwardsFilter, {
+               time: 60000
+            });
+            const forwards = msg.createReactionCollector(forwardsFilter, {
+               time: 60000
+            });
+
+            backwards.on("collect", r => {
+               if (page === 1) return;
+               page--;
+               msg.reactions.find(reaction => reaction.emoji.name == "⬅")
+                  .remove(message.author);
+               embed.setDescription(pages[page - 1]);
+               embed.setFooter(`Page ${page} of ${pages.length}.`);
+               msg.edit(embed);
+            });
+
+            forwards.on("collect", r => {
+               if (page === pages.length) return;
+               page++;
+               msg.reactions.find(reaction => reaction.emoji.name == "➡")
+                  .remove(message.author);
+               embed.setDescription(pages[page - 1]);
+               embed.setFooter(`Page ${page} of ${pages.length}.`);
+               msg.edit(embed);
+            });
+         });
+      });
+   }
    Object.defineProperty(String.prototype, "toProperCase", {
       value: function () {
          return this.replace(/([^\W_]+[^\s-]*) */g, txt => txt.charAt(0)
