@@ -20,7 +20,7 @@ exports.run = async (client, message, cost, amount) => {
 exports.settings = {
     order: 4,
     cost: 3,
-    title: "**Laser Bridge** (.eco buy laser bridge)",
-    description: "Buy a laser bridge. Costs 3 Mons.",
+    title: "Laser Bridge",
+    description: "Buys what is technically a laser bridge.",
     usage: "laser bridge"
 }; 

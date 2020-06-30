@@ -177,7 +177,7 @@ exports.run = async (client, message, args, level) => {
         if (!found) message.channel.send(`There's no item in the shop that goes by \`${requested}\`!`);
     } else if (args[0] == "shop") {
         const shop = [];
-        for (let item of items) shop.push({title: item.settings.title, description: item.settings.description});
+        for (let item of items) shop.push(item.settings);
         let page = 1;
         const total = Math.floor((shop.length - 1) / 5) + 1;
         const generateShopEmbed = () => {
@@ -186,8 +186,16 @@ exports.run = async (client, message, args, level) => {
                 .setColor(0xf1c40f)
                 .setTitle(`Shop (Page ${page} of ${total})`)
                 .setFooter("Mon Shop | TravBot Services");
-            for (let item of selection) embed.addField(item.title, item.description);
+            for (let item of selection) embed.addField(`**${item.title}** (.eco buy ${item.usage})`, `${item.description} Costs ${item.cost} ${item.cost === 1 ? "Mon" : "Mons"}.`);
             return embed;
+        };
+
+        // In case there's just one page, omit unnecessary details.
+        if (total <= 1) {
+            let embed = generateShopEmbed();
+            embed.setTitle("Shop");
+            message.channel.send(embed);
+            return;
         }
 
         // A new embed will be generated every time you flip the page.

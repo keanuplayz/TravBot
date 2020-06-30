@@ -4,7 +4,7 @@ exports.run = async (client, message, cost, amount) => {
 exports.settings = {
     order: 3,
     cost: 1,
-    title: "**Cute** (.eco buy cute)",
-    description: "Calls Monika cute. Costs 1 Mon.",
+    title: "Cute",
+    description: "Calls Monika cute.",
     usage: "cute"
 }; 
