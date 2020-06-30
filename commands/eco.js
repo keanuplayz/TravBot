@@ -2,18 +2,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
-const laser = [
-    "It's technically a laser bridge. No refunds.",
-    "You want a laser bridge? You got one!",
-    "Now what'd they say about building bridges... Oh wait, looks like I nuked the planet again. Whoops!",
-    "I saw this redhead the other day who was so excited to buy what I was selling. Needless to say, she was not very happy with me afterward.",
-    "Sorry, but you'll have to wait until the Laser Bridge Builder leaves early access.",
-    "Thank you for your purchase! For you see, this is the legendary laser of obliteration that has been defended and preserved for countless generations!",
-    "They say that a certain troll dwells under this laser bridge, waiting for an unlucky person to fall for th- I mean- Thank you for your purchase!",
-    "Buy?! Hah! How about our new rental service for just under $9.99 a month? But wait, there's more! For just $99.99, you can rent this laser bridge for an entire year and save 16.67% as opposed to renting it monthly!",
-    "Good choice. Owning a laser bridge is the penultimate experience that all true players strive for!",
-    "I can already imagine the reviews...\n\"9/10 needs more lasers\""
-];
 exports.run = async (client, message, args, level) => {
     if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
     const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
@@ -24,8 +12,18 @@ exports.run = async (client, message, args, level) => {
     if (!("money" in UserData[compositeID])) UserData[compositeID].money = 1;
     if (!UserData[compositeID].lastDaily) UserData[compositeID].lastDaily = "Not Collected";
     if (!UserData[compositeID].userid) UserData[compositeID].userid = message.author.id;
+
+    // Load shop items and sort by the given order.
+    const files = fs.readdirSync(__dirname + "/shop").filter(file => file.endsWith(".js")); // "bet.js", "handhold.js", etc.
+    const items = [];
+    for (let f of files) {
+        const item = require(`./shop/${f}`);
+        if (item.settings && item.run) items.push(item);
+    }
+    items.sort((a, b) => a.settings.order - b.settings.order);
+
     // Balance Command
-    if (args[0] == "balance" || args[0] == "money") {
+    if (args[0] == "balance" || args[0] == "money" || !args[0]) {
         message.channel.send({
             embed: {
                 title: "Bank",
@@ -154,55 +152,76 @@ exports.run = async (client, message, args, level) => {
             }
         }
     } else if (args[0] == "buy") {
-        if (args[1] == "hug") {
-            const amount = 1;
-            if (amount > UserData[compositeID].money) {
-                message.channel.send("Not enough Mons!");
-            } else {
-                UserData[compositeID].money -= amount;
-                message.channel.send(`Transaction of ${amount} Mon completed successfully. <@394808963356688394>`);
+        let found = false;
+        let amount = 1; // The amount the user is buying.
+        if (/\d+/g.test(args[args.length - 1])) amount = parseInt(args.pop());
+        let requested = args.slice(1).join(" "); // The item the user is buying.
+        amount = 1; // For now, just make every eco command singular. Remove this line when buying multiple items is supported.
+
+        for (let item of items) {
+            if (item.settings.usage === requested) {
+                const cost = item.settings.cost * amount;
+
+                if (cost > UserData[compositeID].money) {
+                    message.channel.send("Not enough Mons!");
+                } else {
+                    UserData[compositeID].money -= cost;
+                    item.run(client, message, cost, amount);
+                }
+
+                found = true;
+                break;
             }
-        } else if (args[1] == "handhold") {
-            const amount = 2;
-            if (amount > UserData[compositeID].money) {
-                message.channel.send("Not enough Mons!");
-            } else {
-                UserData[compositeID].money -= amount;
-                message.channel.send(`Transaction of ${amount} Mons completed successfully. <@394808963356688394>`);
-            }
-        } else if (args[1] == "cute") {
-            const amount = 1;
-            if (amount > UserData[compositeID].money) {
-                message.channel.send("Not enough Mons!");
-            } else {
-                UserData[compositeID].money -= amount;
-                message.channel.send("<:MoniCheeseBlushRed:637513137083383826>");
-            }
-        } else if (args.slice(1).join(" ").includes("laser bridge")) {
-            const amount = 3;
-            if (amount > UserData[compositeID].money) {
-                message.channel.send("Not enough Mons!");
-            } else {
-                UserData[compositeID].money -= amount;
-                message.channel.send(laser[Math.floor(Math.random() * laser.length)], {
-                    files: [{
-                        attachment: "assets/TheUltimateLaser.gif"
-                    }]
-                });
-            }
-        } else {
-            message.channel.send(`There's no item in the shop that goes by \`${args[1]}\`!`);
         }
+
+        if (!found) message.channel.send(`There's no item in the shop that goes by \`${requested}\`!`);
     } else if (args[0] == "shop") {
-        const embed = new Discord.RichEmbed()
-            .setColor(0xf1c40f)
-            .setTitle("Shop")
-            .addField("**Hug** (.eco buy hug)", "Hug Monika. Costs 1 Mon.")
-            .addField("**Handholding** (.eco buy handhold)", "Hold Monika's hand. Costs 2 Mons.")
-            .addField("**Cute** (.eco buy cute)", "Calls Monika cute. Costs 1 Mon.")
-            .addField("**Laser Bridge** (.eco buy laser bridge)", "Buys what is technically a laser bridge. Costs 3 Mons.")
-            .setFooter("Mon Shop | TravBot Services");
-        message.channel.send(embed);
+        const shop = [];
+        for (let item of items) shop.push(item.settings);
+        let page = 1;
+        const total = Math.floor((shop.length - 1) / 5) + 1;
+        const generateShopEmbed = () => {
+            const selection = shop.slice((page - 1) * 5, page * 5);
+            const embed = new Discord.RichEmbed()
+                .setColor(0xf1c40f)
+                .setTitle(`Shop (Page ${page} of ${total})`)
+                .setFooter("Mon Shop | TravBot Services");
+            for (let item of selection) embed.addField(`**${item.title}** (.eco buy ${item.usage})`, `${item.description} Costs ${item.cost} ${item.cost === 1 ? "Mon" : "Mons"}.`);
+            return embed;
+        };
+
+        // In case there's just one page, omit unnecessary details.
+        if (total <= 1) {
+            let embed = generateShopEmbed();
+            embed.setTitle("Shop");
+            message.channel.send(embed);
+            return;
+        }
+
+        // A new embed will be generated every time you flip the page.
+        const msg = await message.channel.send(generateShopEmbed());
+        await msg.react("⬅");
+        await msg.react("➡");
+
+        // Backwards Collector
+        msg.createReactionCollector((reaction, user) => reaction.emoji.name == "⬅" && user.id == message.author.id, {
+            time: 300000
+        }).on("collect", () => {
+            msg.reactions.find(uwu => (uwu.emoji.name = "⬅")).remove(message.author);
+            if (page <= 1) return;
+            page--;
+            msg.edit(generateShopEmbed());
+        });
+
+        // Forwards Collector
+        msg.createReactionCollector((reaction, user) => reaction.emoji.name == "➡" && user.id == message.author.id, {
+            time: 300000
+        }).on("collect", () => {
+            msg.reactions.find(uwu => uwu.emoji.name == "➡").remove(message.author);
+            if (page >= total) return;
+            page++;
+            msg.edit(generateShopEmbed());
+        });
     }
     fs.writeFile(__dirname + "/storage/UserData.json", JSON.stringify(UserData), err => {
         if (err) console.log(err);
