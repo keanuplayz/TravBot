@@ -36,7 +36,7 @@ exports.run = async (client, message, args, level) => {
 
     // Initialize the emote stats object with every emote in the current guild.
     // The goal here is to cut the need to access guild.emojis.get() which'll make it faster and easier to work with.
-    for(let emote of message.guild.emojis.values()) {
+    for (let emote of message.guild.emojis.values()) {
         stats[emote.id] = {
             name: emote.name,
             formatted: `<:${emote.name}:${emote.id}>`,
@@ -62,7 +62,7 @@ exports.run = async (client, message, args, level) => {
                 });
 
                 if (messages.size > 0) {
-                    for(let msg of messages.values()) {
+                    for (let msg of messages.values()) {
                         const msgEmotes = msg.content.match(/<:.+?:\d+?>/g) || [];
 
                         for (let emote of msgEmotes) {
@@ -78,7 +78,7 @@ exports.run = async (client, message, args, level) => {
                             }
                         }
 
-                        for(let reaction of msg.reactions.values()) {
+                        for (let reaction of msg.reactions.values()) {
                             const emoteID = reaction.emoji.id;
                             let continueReactionLoop = true;
                             let lastUserID;
@@ -96,7 +96,7 @@ exports.run = async (client, message, args, level) => {
                                     });
 
                                     if (users.size > 0) {
-                                        for(let user of users.values()) {
+                                        for (let user of users.values()) {
                                             if (user.bot) {
                                                 stats[emoteID].bots++;
                                                 botReactions++;
@@ -154,12 +154,12 @@ exports.run = async (client, message, args, level) => {
         let append = `\`#${rank++}\` ${emote.formatted} x ${emote.users} - ${((emote.users / totalUserEmoteUsage * 100) || 0).toFixed(3)}%`;
         if (emote.bots > 0) append += ` (Bots: ${emote.bots})`;
         append += "\n";
-        
+
         if (line.length + append.length > 2000) {
             lines.push(line);
             line = "";
         }
-        
+
         line += append;
     }
 
