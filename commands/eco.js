@@ -151,8 +151,7 @@ exports.run = async (client, message, args, level) => {
                 }
             }
         }
-    }
-    else if (args[0] == "buy") {
+    } else if (args[0] == "buy") {
         let found = false;
         let amount = 1; // The amount the user is buying.
         if (/\d+/g.test(args[args.length - 1])) amount = parseInt(args.pop());
@@ -176,8 +175,7 @@ exports.run = async (client, message, args, level) => {
         }
 
         if (!found) message.channel.send(`There's no item in the shop that goes by \`${requested}\`!`);
-    }
-    else if (args[0] == "shop") {
+    } else if (args[0] == "shop") {
         const shop = [];
         for (let item of items) shop.push({title: item.settings.title, description: item.settings.description});
         let page = 1;
