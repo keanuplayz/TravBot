@@ -10,7 +10,8 @@ const defaultSettings = {
     systemNotice: "true",
     welcomeChannel: "welcome",
     welcomeMessage: "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D",
-    welcomeEnabled: "false"
+    welcomeEnabled: "false",
+    graphicalWelcome: "false"
 };
 const settings = new Enmap({
     name: "settings",

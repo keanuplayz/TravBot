@@ -65,8 +65,7 @@ exports.run = async (client, message, args, level) => {
                 }
             });
         }
-    }
-    else if (args[0] == "guild") {
+    } else if (args[0] == "guild") {
         var guildMoney = 0; // Total amount of Mons in guild.
         var guildUsers = 0;
         var guildRichest = ""; // Richest user in guild.
@@ -99,8 +98,7 @@ exports.run = async (client, message, args, level) => {
                 }]
             }
         });
-    }
-    else if (args[0] == "pay") {
+    } else if (args[0] == "pay") {
         if (!args[1] || !args[2])
             message.channel.send("eco pay <amount> <user> -- Use underscores for spaces (or ping the user alternatively).");
         else if (args.length > 3)

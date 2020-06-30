@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 exports.run = async (client, message, [
     action, key, ...value
 ], level) => {
-    // eslint-disable-line no-unused-vars
     const settings = message.settings;
     const defaults = client.settings.get("default");
     const overrides = client.settings.get(message.guild.id);
