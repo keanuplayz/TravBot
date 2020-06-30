@@ -2,6 +2,7 @@
 exports.run = async (client, message, args, level) => {
     const sender = message.author;
     const mention = message.mentions.users.first();
+    if (!mention) return message.channel.send("You have to mention a user first!");
     const cookies = [
         `has given <@${mention.id}> a chocolate chip cookie!`,
         `has given <@${mention.id}> a soft homemade oatmeal cookie!`,
@@ -27,7 +28,7 @@ exports.run = async (client, message, args, level) => {
     if (args[0] == "all") return message.channel.send(`<@${sender.id}> gave everybody a cookie!`);
     if (!mention) return message.channel.send(":cookie: Here's a cookie!");
     if (mention.id == sender.id) return message.channel.send("You can't give yourself cookies!");
-    message.channel.send(`:cookie: <@${sender.id}> ` + cookies[Math.floor(Math.random() * cookies.length)]);
+    message.channel.send(`:cookie: <@${sender.id}> ${cookies.random()}`);
 };
 exports.conf = {
     enabled: true,

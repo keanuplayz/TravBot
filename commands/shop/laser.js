@@ -7,7 +7,7 @@ const lines = [
     "Thank you for your purchase! For you see, this is the legendary laser of obliteration that has been defended and preserved for countless generations!",
     "They say that a certain troll dwells under this laser bridge, waiting for an unlucky person to fall for th- I mean- Thank you for your purchase!",
     "Buy?! Hah! How about our new rental service for just under $9.99 a month? But wait, there's more! For just $99.99, you can rent this laser bridge for an entire year and save 16.67% as opposed to renting it monthly!",
-    "Good choice. Owning a laser bridge is the penultimate experience that all true players strive for!",
+    "Good choice. Owning a laser bridge is the penultimate experience that all true seekers strive for!",
     "I can already imagine the reviews...\n\"9/10 needs more lasers\""
 ];
 exports.run = async (client, message, cost, amount) => {

@@ -26,7 +26,7 @@ exports.run = async (client, message, args, level) => {
         "Outlook not so good,",
         "Very doubtful,"
     ];
-    message.channel.send(responses[Math.floor(Math.random() * responses.length)] + `<@${sender.id}>`);
+    message.channel.send(`${responses.random()} <@${sender.id}>`);
 };
 exports.conf = {
     enabled: true,

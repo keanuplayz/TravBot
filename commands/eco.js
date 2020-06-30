@@ -104,7 +104,7 @@ exports.run = async (client, message, args, level) => {
         else if (args.length > 3)
             message.channel.send("Too many arguments! `eco pay <amount> <user>`");
         else {
-            var amount = Number(args[1]);
+            let amount = Number(args[1]);
 
             if (!amount && amount !== 0)
                 message.channel.send(`\`${args[1]}\` isn't a valid amount of Mons.`);
@@ -116,13 +116,15 @@ exports.run = async (client, message, args, level) => {
                 else if (amount <= 0)
                     message.channel.send("You must send at least one Mon!");
                 else {
-                    var target;
+                    let target;
 
                     if (/<@.?\d+>/g.test(args[2])) {
                         target = args[2].match(/\d+/g)[0];
                     } else {
-                        var name = args[2].split("_").join(" ");
-                        target = client.users.find(user => user.username == name).id;
+                        let name = args[2].split("_").join(" ");
+                        let towards = client.users.find(user => user.username.includes(name));
+                        if (!towards) return message.channel.send(`No user found by the name \`${name}\`!`);
+                        target = towards.id;
                     }
 
                     if (!target)
@@ -131,7 +133,7 @@ exports.run = async (client, message, args, level) => {
                         if (sender.id === target)
                             message.channel.send("You can't send Mons to yourself!");
                         else {
-                            var account = target + message.guild.id;
+                            let account = target + message.guild.id;
 
                             // Initialize target account
                             if (!UserData[account]) UserData[account] = {};
@@ -141,11 +143,7 @@ exports.run = async (client, message, args, level) => {
 
                             UserData[compositeID].money -= amount;
                             UserData[account].money += amount;
-                            if (amount > 1) {
-                                message.channel.send(`<@${sender.id}> has sent ${amount} Mons to <@${target}>!`);
-                            } else {
-                                message.channel.send(`<@${sender.id}> has sent ${amount} Mon to <@${target}>!`);
-                            }
+                            message.channel.send(`<@${sender.id}> has sent ${amount.pluralise("Mon", "s")} to <@${target}>!`);
                         }
                     }
                 }
@@ -186,7 +184,7 @@ exports.run = async (client, message, args, level) => {
                 .setColor(0xf1c40f)
                 .setTitle(`Shop (Page ${page} of ${total})`)
                 .setFooter("Mon Shop | TravBot Services");
-            for (let item of selection) embed.addField(`**${item.title}** (.eco buy ${item.usage})`, `${item.description} Costs ${item.cost} ${item.cost === 1 ? "Mon" : "Mons"}.`);
+            for (let item of selection) embed.addField(`**${item.title}** (.eco buy ${item.usage})`, `${item.description} Costs ${item.cost.pluralise("Mon", "s")}.`);
             return embed;
         };
 

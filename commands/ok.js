@@ -57,7 +57,7 @@ exports.run = async (client, message, args, level) => {
         "cat",
         "large man"
     ];
-    message.channel.send("ok " + responses[Math.floor(Math.random() * responses.length)]);
+    message.channel.send("ok " + responses.random());
 };
 exports.conf = {
     enabled: true,

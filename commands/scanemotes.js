@@ -138,7 +138,7 @@ exports.run = async (client, message, args, level) => {
     // Mark the operation as ended.
     const finishTime = Date.now();
     clearInterval(interval);
-    statusMessage.edit(`Finished operation in ${moment.duration(finishTime - startTime).humanize()} with ${warnings} ${warnings === 1 ? "inconsistency" : "inconsistencies"}.`);
+    statusMessage.edit(`Finished operation in ${moment.duration(finishTime - startTime).humanize()} with ${warnings.pluralise("inconsistenc", "ies", "y")}.`);
     client.logger.log(`Finished operation in ${finishTime - startTime} ms.`);
     message.channel.stopTyping();
 

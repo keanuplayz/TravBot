@@ -58,7 +58,8 @@ The prefix for the bot is: `.`
 1. Download or clone the repo.
 2. Open the directory.
 3. Run `npm install` (if it refuses to install, please submit an issue.)
-4. Run `node start`
+4. Run `node setup.js`
+5. Run `node start`
 
 
 ## License

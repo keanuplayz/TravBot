@@ -6,7 +6,7 @@ exports.run = (client, message, args) => {
     if (!fetched.dispatcher.paused) return message.channel.send("The music isn't paused.");
 
     fetched.dispatcher.resume();
-    message.channel.send(`Succesfully resumed ${fetched.queue[0].songTitle}`);
+    message.channel.send(`Successfully resumed ${fetched.queue[0].songTitle}`);
 };
 
 exports.conf = {
