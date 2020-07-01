@@ -5,7 +5,7 @@ exports.run = (client, message, args, level) => {
     if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) return message.channel.send("I am lacking the required permissions to perform this action.");
     if (args.length === 0) return message.channel.send("Please provide a new voice channel name.");
     const changeVC = client.channels.get(voiceChannel.id);
-    message.channel.send("Changed channel name from " + `"${voiceChannel}"` + " to " + `"${args.join(" ")}"` + ".")
+    message.channel.send(`Changed channel name from "${voiceChannel}" to "${args.join(" ")}".`)
         .then(changeVC.setName(args.join(" ")));
 };
 exports.conf = {

@@ -2,6 +2,16 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
+
+// Load shop items and sort by the given order.
+const files = fs.readdirSync(__dirname + "/shop").filter(file => file.endsWith(".js")); // "bet.js", "handhold.js", etc.
+const items = [];
+for (let f of files) {
+    const item = require(`./shop/${f}`);
+    if (item.settings && item.run) items.push(item);
+}
+items.sort((a, b) => a.settings.order - b.settings.order);
+
 exports.run = async (client, message, args, level) => {
     if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
     const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
@@ -12,15 +22,6 @@ exports.run = async (client, message, args, level) => {
     if (!("money" in UserData[compositeID])) UserData[compositeID].money = 1;
     if (!UserData[compositeID].lastDaily) UserData[compositeID].lastDaily = "Not Collected";
     if (!UserData[compositeID].userid) UserData[compositeID].userid = message.author.id;
-
-    // Load shop items and sort by the given order.
-    const files = fs.readdirSync(__dirname + "/shop").filter(file => file.endsWith(".js")); // "bet.js", "handhold.js", etc.
-    const items = [];
-    for (let f of files) {
-        const item = require(`./shop/${f}`);
-        if (item.settings && item.run) items.push(item);
-    }
-    items.sort((a, b) => a.settings.order - b.settings.order);
 
     // Balance Command
     if (args[0] == "balance" || args[0] == "money" || !args[0]) {
@@ -104,7 +105,7 @@ exports.run = async (client, message, args, level) => {
         else if (args.length > 3)
             message.channel.send("Too many arguments! `eco pay <amount> <user>`");
         else {
-            var amount = Number(args[1]);
+            let amount = Number(args[1]);
 
             if (!amount && amount !== 0)
                 message.channel.send(`\`${args[1]}\` isn't a valid amount of Mons.`);
@@ -116,13 +117,15 @@ exports.run = async (client, message, args, level) => {
                 else if (amount <= 0)
                     message.channel.send("You must send at least one Mon!");
                 else {
-                    var target;
+                    let target;
 
                     if (/<@.?\d+>/g.test(args[2])) {
                         target = args[2].match(/\d+/g)[0];
                     } else {
-                        var name = args[2].split("_").join(" ");
-                        target = client.users.find(user => user.username == name).id;
+                        let name = args[2].split("_").join(" ");
+                        let towards = client.users.find(user => user.username.includes(name));
+                        if (!towards) return message.channel.send(`No user found by the name \`${name}\`!`);
+                        target = towards.id;
                     }
 
                     if (!target)
@@ -131,7 +134,7 @@ exports.run = async (client, message, args, level) => {
                         if (sender.id === target)
                             message.channel.send("You can't send Mons to yourself!");
                         else {
-                            var account = target + message.guild.id;
+                            let account = target + message.guild.id;
 
                             // Initialize target account
                             if (!UserData[account]) UserData[account] = {};
@@ -141,11 +144,7 @@ exports.run = async (client, message, args, level) => {
 
                             UserData[compositeID].money -= amount;
                             UserData[account].money += amount;
-                            if (amount > 1) {
-                                message.channel.send(`<@${sender.id}> has sent ${amount} Mons to <@${target}>!`);
-                            } else {
-                                message.channel.send(`<@${sender.id}> has sent ${amount} Mon to <@${target}>!`);
-                            }
+                            message.channel.send(`<@${sender.id}> has sent ${amount.pluralise("Mon", "s")} to <@${target}>!`);
                         }
                     }
                 }
@@ -186,7 +185,7 @@ exports.run = async (client, message, args, level) => {
                 .setColor(0xf1c40f)
                 .setTitle(`Shop (Page ${page} of ${total})`)
                 .setFooter("Mon Shop | TravBot Services");
-            for (let item of selection) embed.addField(`**${item.title}** (.eco buy ${item.usage})`, `${item.description} Costs ${item.cost} ${item.cost === 1 ? "Mon" : "Mons"}.`);
+            for (let item of selection) embed.addField(`**${item.title}** (.eco buy ${item.usage})`, `${item.description} Costs ${item.cost.pluralise("Mon", "s")}.`);
             return embed;
         };
 

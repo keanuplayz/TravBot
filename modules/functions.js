@@ -151,6 +151,15 @@ module.exports = client => {
          return this[Math.floor(Math.random() * this.length)];
       }
    });
+   // e.g. amount.pluralise("credit", "s"), amount.pluralise("part", "ies", "y"), amount.pluralise("sheep")
+   Object.defineProperty(Number.prototype, "pluralise", {
+      value: function (word, plural = "", singular = "", excludeNumber = false) {
+         let result = excludeNumber ? "" : `${this} `;
+         if (this.valueOf() === 1) result += word + singular;
+         else result += word + plural;
+         return result;
+      }
+   });
    client.wait = require("util")
       .promisify(setTimeout);
    process.on("uncaughtException", err => {
