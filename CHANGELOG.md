@@ -4,10 +4,10 @@
 - Made commands utilize the existing `Array.random()` function.
 - Removed concatenation when using template strings.
 - Added `Number.pluralise()` for convenient pluralization.
-- Removed template strings when not necessary.
 - Reworked the `neko` command.
 - Made `whoami` sync up with `whois` by using the same config.
 - Fixed a bug with `emote` where it wouldn't find any upper case emotes and made it more lenient to just include any emote (so you don't have to remember the exact emote name).
+- Moved lists and gathering shop items outside of `exports.run()` so that it initializes once during the bot's initialization (or when reloaded) rather than every time the command is called.
 
 # 2.8.1 - Modularized eco shop and eco buy
 - Fixed scanemotes sometimes not displaying all emotes. This was an issue of not accounting for whether an emote was animated or not.

@@ -6,6 +6,7 @@ const accepted = ["smug", "baka", "tickle", "slap", "poke", "pat", "neko", "neko
 exports.run = async (client, message, args, level) => {
     if (args.length === 0) message.channel.send("Please provide an argument. For available arguments, please use `.help neko`");
     else if (args[0] in neko.sfw && accepted.includes(args[0])) message.channel.send((await neko.sfw[args[0]]()).url);
+    else message.channel.send(`\`${args[0]}\` is not a valid argument!`);
 };
 exports.conf = {
     enabled: true,

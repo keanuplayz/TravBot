@@ -2,6 +2,16 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
+
+// Load shop items and sort by the given order.
+const files = fs.readdirSync(__dirname + "/shop").filter(file => file.endsWith(".js")); // "bet.js", "handhold.js", etc.
+const items = [];
+for (let f of files) {
+    const item = require(`./shop/${f}`);
+    if (item.settings && item.run) items.push(item);
+}
+items.sort((a, b) => a.settings.order - b.settings.order);
+
 exports.run = async (client, message, args, level) => {
     if (message.guild.id != "637512823676600330") return message.channel.send("Sorry, this command can only be used in Monika's emote server.");
     const UserData = JSON.parse(fs.readFileSync(__dirname + "/storage/UserData.json", "utf8"));
@@ -12,15 +22,6 @@ exports.run = async (client, message, args, level) => {
     if (!("money" in UserData[compositeID])) UserData[compositeID].money = 1;
     if (!UserData[compositeID].lastDaily) UserData[compositeID].lastDaily = "Not Collected";
     if (!UserData[compositeID].userid) UserData[compositeID].userid = message.author.id;
-
-    // Load shop items and sort by the given order.
-    const files = fs.readdirSync(__dirname + "/shop").filter(file => file.endsWith(".js")); // "bet.js", "handhold.js", etc.
-    const items = [];
-    for (let f of files) {
-        const item = require(`./shop/${f}`);
-        if (item.settings && item.run) items.push(item);
-    }
-    items.sort((a, b) => a.settings.order - b.settings.order);
 
     // Balance Command
     if (args[0] == "balance" || args[0] == "money" || !args[0]) {
