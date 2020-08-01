@@ -23,7 +23,7 @@ exports.run = async (client, message, args, level) => {
 
     if (args[0] == "remove") {
         let isFound = false;
-        
+
         for (const date in UserData[compositeID].items) {
             const item = UserData[compositeID].items[date];
             if (item === args.slice(1).join(" ")) {
@@ -36,7 +36,7 @@ exports.run = async (client, message, args, level) => {
                 }
             }
         }
-        
+
         if (!isFound) message.channel.send("That item couldn't be found.");
     }
 
