@@ -8,6 +8,7 @@ const letters = {
     y: "yýỳỷỹỵ".split(""),
     d: "dđ".split("")
 };
+
 function transform(str) {
     let out = "";
 
@@ -42,6 +43,6 @@ exports.conf = {
 exports.help = {
     name: "thonk",
     category: "Fun",
-	description: "Transforms your text into ｖｉｅｔｎａｍｅｓｅ.",
-	usage: "thonk [text]"
+    description: "Transforms your text into ｖｉｅｔｎａｍｅｓｅ.",
+    usage: "thonk [text]"
 };
