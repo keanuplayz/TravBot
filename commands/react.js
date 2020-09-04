@@ -43,6 +43,8 @@ exports.run = async (client, message, args, level) => {
         const emoji = client.emojis.find(emoji => emoji.name === search);
 
         if (emoji) {
+            // Call the delete function only once to avoid unnecessary errors.
+            if (!anyEmoteIsValid) message.delete();
             anyEmoteIsValid = true;
             const reaction = await target.react(emoji);
 
@@ -53,8 +55,7 @@ exports.run = async (client, message, args, level) => {
         }
     }
 
-    if (!anyEmoteIsValid)
-        message.react("❓");
+    if (!anyEmoteIsValid && !message.deleted) message.react("❓");
 };
 exports.conf = {
     enabled: true,
@@ -65,6 +66,6 @@ exports.conf = {
 exports.help = {
     name: "react",
     category: "Fun",
-    description: "Reacts to the previous message.",
+    description: "Reacts to the a previous message in your place. You have to react with the same emote before the bot removes that reaction.",
     usage: "react <emote name> (<message ID / distance>)"
 };
