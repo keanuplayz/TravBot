@@ -3,6 +3,7 @@ exports.run = async (client, message, args, level) => {
     if (args.length === 0) return message.channel.send("Please provide a valid emote name!");
 
     let target;
+    let distance = 1;
 
     if (args.length >= 2) {
         const last = args[args.length - 1];
@@ -17,23 +18,18 @@ exports.run = async (client, message, args, level) => {
         }
         // The entire string has to be a number for this to match. Prevents leaCheeseAmerican1 from triggering this.
         else if (/^\d+$/g.test(last)) {
-            const distance = parseInt(last);
+            distance = parseInt(last);
 
-            if (distance >= 0 && distance <= 99) {
-                // Messages are ordered from latest to earliest.
-                target = (await message.channel.fetchMessages({
-                    limit: distance + 1
-                })).last();
-                args.pop();
-            } else
-                return message.channel.send("Your distance must be between 0 and 99!");
+            if (distance >= 0 && distance <= 99) args.pop();
+            else return message.channel.send("Your distance must be between 0 and 99!");
         }
     }
 
-    // distance = 1
     if (!target) {
+        // Messages are ordered from latest to earliest.
+        // You also have to add 1 as well because fetchMessages includes your own message.
         target = (await message.channel.fetchMessages({
-            limit: 2
+            limit: distance + 1
         })).last();
     }
 
@@ -44,7 +40,7 @@ exports.run = async (client, message, args, level) => {
 
         if (emoji) {
             // Call the delete function only once to avoid unnecessary errors.
-            if (!anyEmoteIsValid) message.delete();
+            if (!anyEmoteIsValid && distance !== 0) message.delete();
             anyEmoteIsValid = true;
             const reaction = await target.react(emoji);
 
