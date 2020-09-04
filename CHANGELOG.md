@@ -5,9 +5,11 @@
 	- Renamed guild ID to message ID for clarity's sake.
 	- Now removes the bot's own reaction after a few seconds to make the reaction count more accurate.
 	- Now lets you react with multiple messages in a row.
+	- Now reacts with ❓ if no reactions were found at all (see below).
 - `emote`:
 	- Is now case-sensitive again (because there are too many name conflicts).
 	- Accepts multiple emotes for tiled emotes.
+	- Now reacts to your message with ❓ instead of `None of those emote names were valid!` so that the bot doesn't spam the chat if you can't find the right emote (because you'll still be able to delete your messages).
 - `thonk` now stores the last specified phrase so you can repeat a phrase with different diacritics.
 
 # 2.8.3 - The ultimate meme

@@ -16,8 +16,11 @@ exports.run = async (client, message, args, level) => {
         }
     }
 
-    message.delete();
-    message.channel.send(foundAny ? text : "None of those emote names were valid!");
+    if (foundAny) {
+        message.channel.send(text);
+        message.delete();
+    } else
+        message.react("❓");
 };
 exports.conf = {
     enabled: true,

@@ -37,10 +37,13 @@ exports.run = async (client, message, args, level) => {
         })).last();
     }
 
+    let anyEmoteIsValid = false;
+
     for (const search of args) {
         const emoji = client.emojis.find(emoji => emoji.name === search);
 
         if (emoji) {
+            anyEmoteIsValid = true;
             const reaction = await target.react(emoji);
 
             // This part is called with a promise because you don't want to wait 5 seconds between each reaction.
@@ -50,6 +53,8 @@ exports.run = async (client, message, args, level) => {
         }
     }
 
+    if (!anyEmoteIsValid)
+        message.react("❓");
 };
 exports.conf = {
     enabled: true,
