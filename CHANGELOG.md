@@ -1,3 +1,17 @@
+# 2.8.4 - Reworked the react command
+- `react` is now a fully versatile command for helping you react to other messages with non-server emotes.
+	- Now properly reacts to the previous message (bug fix).
+	- Provides you the option to react to any number of messages before your message (3 messages above yours for example).
+	- Renamed guild ID to message ID for clarity's sake.
+	- Now removes the bot's own reaction after a few seconds to make the reaction count more accurate.
+	- Now lets you react with multiple messages in a row.
+- `emote`:
+	- Is now case-sensitive again (because there are too many name conflicts).
+	- Accepts multiple emotes for tiled emotes.
+- `thonk` now stores the last specified phrase so you can repeat a phrase with different diacritics.
+
+# 2.8.3 - The ultimate meme
+
 # 2.8.2
 - Added a changelog.
 - Added an extra instruction to the readme's installation.

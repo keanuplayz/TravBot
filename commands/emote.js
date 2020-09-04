@@ -1,11 +1,23 @@
 /* eslint-disable no-unused-vars */
 exports.run = async (client, message, args, level) => {
     if (!args[0]) return message.channel.send("You need to specify an emote to use!");
-    const search = args[0].toLowerCase();
-    const emote = client.emojis.find(emote => emote.name.toLowerCase().includes(search));
-    if (!emote) return message.channel.send("That's not a valid emote name!");
+    let text = "";
+    let foundAny = false;
+
+    for (const search of args) {
+        if (search === "\\")
+            text += "\n";
+        else {
+            const emote = client.emojis.find(emote => emote.name === search);
+            text += emote ? emote.toString() : "❓";
+
+            if (emote)
+                foundAny = true;
+        }
+    }
+
     message.delete();
-    message.channel.send(`${emote}`);
+    message.channel.send(foundAny ? text : "None of those emote names were valid!");
 };
 exports.conf = {
     enabled: true,
@@ -16,6 +28,6 @@ exports.conf = {
 exports.help = {
     name: "emote",
     category: "Fun",
-    description: "Sends an emote.",
-    usage: "emote [emote name]"
+    description: "Sends any amount of emotes. Include a backslash in place of an emote's name if you want a new line.",
+    usage: "emote [emote name(s)]"
 };
