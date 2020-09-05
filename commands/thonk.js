@@ -27,12 +27,12 @@ function transform(str) {
 
     return out;
 }
+
+let phrase = "I have no currently set phrase!";
+
 exports.run = async (client, message, args, level) => {
-    if (args.length > 0) {
-        message.channel.send(transform(args.join(" ")));
-    } else {
-        message.channel.send("You need to send at least one argument!");
-    }
+    if (args.length > 0) phrase = args.join(" ");
+    message.channel.send(transform(phrase));
 };
 exports.conf = {
     enabled: true,
@@ -44,5 +44,5 @@ exports.help = {
     name: "thonk",
     category: "Fun",
     description: "Transforms your text into ｖｉｅｔｎａｍｅｓｅ.",
-    usage: "thonk [text]"
+    usage: "thonk ([text])"
 };
