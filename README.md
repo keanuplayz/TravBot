@@ -1,3 +1,6 @@
+# This project is deprecated!
+## Go to <a href="https://github.com/keanuplayz/TravBot-v3">TravBot-v3</a> for the new version!
+
 <p align="center">
   <img src="https://i.imgur.com/l2E2Tfi.png"/>
 </p>
